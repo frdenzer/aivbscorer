@@ -3,10 +3,12 @@ package com.example.aivbscorer
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
@@ -21,6 +23,7 @@ import androidx.compose.runtime.setValue
 import com.example.aivbscorer.ui.theme.VolleyballScorerTheme
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
@@ -50,8 +53,9 @@ fun VolleyballScorerApp() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            TeamScoreColumn("Team A", teamAScore, teamASets, { teamAScore++ }, { if (teamAScore > 0) teamAScore-- })
-            TeamScoreColumn("Team B", teamBScore, teamBSets, { teamBScore++ }, { if (teamBScore > 0) teamBScore-- })
+            TeamScoreColumn("Team A", teamAScore, teamASets, { teamAScore++ }, { if (teamAScore > 0) teamAScore-- }, Color.Red)
+            Spacer(modifier = Modifier.width(8.dp)) // Optional spacer for visual separation
+            TeamScoreColumn("Team B", teamBScore, teamBSets, { teamBScore++ }, { if (teamBScore > 0) teamBScore-- }, Color.Blue)
         }
         Button(onClick = {
             teamAScore = 0
@@ -70,13 +74,19 @@ fun TeamScoreColumn(
     score: Int,
     sets: Int,
     onIncrementScore: () -> Unit,
-    onDecrementScore: () -> Unit
+    onDecrementScore: () -> Unit,
+    backgroundColor: Color
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxHeight()
+            .background(backgroundColor)
     ) {
-        Text(text = teamName, style = MaterialTheme.typography.headlineSmall)
-        Text(text = "Score: $score", style = MaterialTheme.typography.headlineMedium)
+        val textColor = Color.White
+        // Assuming white text color for contrast. Adjust as necessary.
+        Text(text = teamName, style = MaterialTheme.typography.headlineSmall.copy(color = textColor))
+        Text(text = "Score: $score", style = MaterialTheme.typography.headlineLarge.copy(color = textColor))
         Row {
             Button(onClick = onIncrementScore) {
                 Text("+")
@@ -86,6 +96,6 @@ fun TeamScoreColumn(
                 Text("-")
             }
         }
-        Text(text = "Sets: $sets", style = MaterialTheme.typography.headlineSmall)
+        Text(text = "Sets: $sets", style = MaterialTheme.typography.headlineSmall.copy(color = textColor))
     }
 }
