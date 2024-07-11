@@ -36,6 +36,10 @@ fun VolleyballScorerApp() {
     var teamASets by remember { mutableIntStateOf(0) }
     var teamBSets by remember { mutableIntStateOf(0) }
 
+    val resetScore = {
+        teamAScore = 0
+        teamBScore = 0
+    }
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -45,9 +49,20 @@ fun VolleyballScorerApp() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            TeamScoreColumn("Team A", teamAScore, teamASets, { teamAScore++ }, { if (teamAScore > 0) teamAScore-- }, Color.Red)
-//            Spacer(modifier = Modifier.width(2.dp)) // Optional spacer for visual separation
-            TeamScoreColumn("Team B", teamBScore, teamBSets, { teamBScore++ }, { if (teamBScore > 0) teamBScore-- }, Color.Blue)
+            TeamScoreColumn("Team A", teamAScore, teamASets, {
+                teamAScore++
+                if (teamAScore == 25) {
+                    teamASets++
+                    resetScore()
+                }
+            }, { if (teamAScore > 0) teamAScore-- }, Color.Red)
+            TeamScoreColumn("Team B", teamBScore, teamBSets, {
+                teamBScore++
+                if (teamBScore == 25) {
+                    teamBSets++
+                    resetScore()
+                }
+            }, { if (teamBScore > 0) teamBScore-- }, Color.Blue)
         }
         Button(onClick = {
             teamAScore = 0
@@ -59,4 +74,5 @@ fun VolleyballScorerApp() {
         }
     }
 }
+
 
