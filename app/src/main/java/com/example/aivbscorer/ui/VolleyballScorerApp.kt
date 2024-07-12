@@ -54,12 +54,10 @@ fun VolleyballScorerApp(gvm: GameViewModel) {
                 .weight(1f)
                 .fillMaxHeight()
             TeamScoreColumn(
-                teamA, modifier = commonModifier
-                    .background(teamA.colorId)
+                teamA, commonModifier.background(teamA.colorId)
             )
             TeamScoreColumn(
-                teamB, modifier = commonModifier
-                    .background(teamB.colorId)
+                teamB, commonModifier.background(teamB.colorId)
             )
         }
         Button(onClick = {
