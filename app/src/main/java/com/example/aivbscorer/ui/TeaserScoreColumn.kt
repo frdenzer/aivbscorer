@@ -59,12 +59,12 @@ fun TeamScoreColumn(
             text = "Sets: ${team.teamSetsWon}",
             style = MaterialTheme.typography.headlineSmall.copy(color = textColor)
         )
-        if (team.teamScore < 1) return
-        Row {
-            Button(onClick = team::closeSetSavingScore) {
-                Text("close set with win")
-            }
-        }
+        // if (team.teamScore < 1) return
+        // Row {
+        //     Button(onClick = team::closeSetSavingScore) {
+        //         Text("close set with win")
+        //     }
+        // }
     }
 }
 
