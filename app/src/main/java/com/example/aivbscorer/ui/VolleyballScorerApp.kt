@@ -68,7 +68,9 @@ fun VolleyballScorerApp(gvm: GameViewModel) {
         MatchScoreLog(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(200.dp), gameViewModel = gvm
+//                .height(200.dp)
+            ,
+            gameViewModel = gvm
         )
     }
 }

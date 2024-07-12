@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.ScoreEntry
+import com.example.aivbscorer.ui.constants.TWO
 import com.example.aivbscorer.ui.constants.WIDTH
 import com.example.aivbscorer.ui.theme.VerticalSpacing
 
@@ -43,8 +44,14 @@ fun MatchScoreLog(
         Text("Match Score Log")
         VerticalSpacing()
         LazyColumn (modifier = modifier) {
-            items(scoreLog) { scoreEntry ->
+            // take three, if at most three items are available
+            items(scoreLog.take(TWO)) { scoreEntry ->
                 ScoreItem(scoreEntry)
+            }
+            if (scoreLog.size > TWO){
+                item {
+                    Text("...")
+                }
             }
         }
     }
