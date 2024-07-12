@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -34,38 +36,41 @@ fun VolleyballScorerApp(gvm: GameViewModel) {
     val teamB = remember { Team(Color.Blue, teamA, gvm::onSetWon) }
     teamA.opponent = teamB
 
-    Row(
+    Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .background(Color.Gray),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
+            .fillMaxSize()
+            .width(WIDTH),
+        horizontalAlignment = Alignment.CenterHorizontally // This centers the items horizontally
     ) {
-        Column(modifier = Modifier
-            .fillMaxHeight()
-            .width(WIDTH)) {
-            Button(onClick = {
-                teamA.resetAllCountersForBothTeams() // reset both Teams scores and sets
-            }) {
-                Text("Reset")
-            }
-            MatchScoreLog(
-                modifier = Modifier.fillMaxHeight(), gameViewModel = gvm
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Gray)
+                .weight(1f),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            val commonModifier = Modifier
+                .weight(1f)
+                .fillMaxHeight()
+            TeamScoreColumn(
+                teamA, modifier = commonModifier
+                    .background(teamA.colorId)
+            )
+            TeamScoreColumn(
+                teamB, modifier = commonModifier
+                    .background(teamB.colorId)
             )
         }
-        TeamScoreColumn(
-            teamA,
+        Button(onClick = {
+            teamA.resetAllCountersForBothTeams() // reset both Teams scores and sets
+        }) {
+            Text("Reset")
+        }
+        MatchScoreLog(
             modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth(.5f)
-                .background(teamA.colorId)
-        )
-        TeamScoreColumn(
-            teamB,
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth(.5f)
-                .background(teamB.colorId)
+                .fillMaxWidth()
+                .height(200.dp), gameViewModel = gvm
         )
     }
 }

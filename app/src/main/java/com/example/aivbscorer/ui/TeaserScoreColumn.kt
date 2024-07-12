@@ -21,7 +21,7 @@ fun TeamScoreColumnPreview() {
         team = Team(Color.Red, null) {},
         modifier = Modifier
             .fillMaxHeight()
-            .fillMaxWidth(.25f),
+            .fillMaxWidth(),
         // .background(Color.hsl(0, 1f, 0.5f)), // Red
     )
 }
@@ -31,7 +31,9 @@ fun TeamScoreColumn(
     team: Team, modifier: Modifier = Modifier,
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+
     ) {
         val textColor = Color.White
         Text(
