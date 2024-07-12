@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.ScoreEntry
+import com.example.aivbscorer.ui.constants.WIDTH
 
 @Preview(showBackground = true)
 @Composable
@@ -28,7 +29,7 @@ fun MatchScoreLogPreview() {
             updateScoreLog(ScoreEntry(Color.Red, 0, Color.Blue, 25))
             updateScoreLog(ScoreEntry(Color.Red, 24, Color.Blue, 26))
         },
-        Modifier.width(200.dp),
+        Modifier.width(WIDTH),
     )
 }
 
@@ -56,7 +57,7 @@ private fun ScoreItem(scoreEntry: ScoreEntry) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(2.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.Start
     ) {
         Text("${scoreEntry.teamAColor.name}: ${scoreEntry.teamAScore}")
         Text("${scoreEntry.teamBColor.name}: ${scoreEntry.teamBScore}")

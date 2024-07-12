@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.Team
+import com.example.aivbscorer.ui.constants.WIDTH
 
 @Preview(showBackground = true)
 @Composable
@@ -42,7 +43,7 @@ fun VolleyballScorerApp(gvm: GameViewModel) {
     ) {
         Column(modifier = Modifier
             .fillMaxHeight()
-            .width(150.dp)) {
+            .width(WIDTH)) {
             Button(onClick = {
                 teamA.resetAllCountersForBothTeams() // reset both Teams scores and sets
             }) {
