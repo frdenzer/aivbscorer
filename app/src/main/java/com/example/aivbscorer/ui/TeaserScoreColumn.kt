@@ -10,7 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.aivbscorer.Team
 import com.example.aivbscorer.ui.theme.HorizontalSpacing
 import com.example.aivbscorer.ui.theme.VerticalSpacing
@@ -37,9 +40,9 @@ fun TeamScoreColumn(
         verticalArrangement = Arrangement.Center // This will center the Row vertically
     ) {
         val textColor = Color.White
-        Text(
+        ScalingText(
             text = team.teamScore.toString(),
-            style = MaterialTheme.typography.displayLarge.copy(color = textColor)
+            color = textColor,
         )
         Row {
             Button(onClick = team::score) {
@@ -73,4 +76,20 @@ inline fun <T> Int.Times(content: @Composable () -> T) {
     for (i in 0 until this) {
         content()
     }
+}
+
+@Composable
+fun ScalingText(text: String, color: Color) {
+    val configuration = LocalConfiguration.current
+    val baseCharCount = 2
+    val screenWidth = configuration.screenWidthDp.dp / 2
+    val baseFontSize = screenWidth.value.sp // Base font size for baseCharCount characters
+    val adjustmentFactor = text.length.toFloat() * baseCharCount
+    val dynamicFontSize = (baseFontSize.value / adjustmentFactor).coerceAtLeast(12f).sp
+
+    Text(
+        text = text, style = MaterialTheme.typography.displayLarge.copy(
+            color = color, fontSize = dynamicFontSize
+        )
+    )
 }
