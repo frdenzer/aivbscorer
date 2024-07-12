@@ -24,9 +24,9 @@ import com.example.aivbscorer.ScoreEntry
 fun MatchScoreLogPreview() {
     MatchScoreLog(
         GameViewModel().apply {
-            updateScoreLog(ScoreEntry(Color.Red, 1, Color.Blue, 2))
-            updateScoreLog(ScoreEntry(Color.Red, 3, Color.Blue, 4))
-            updateScoreLog(ScoreEntry(Color.Red, 5, Color.Blue, 6))
+            updateScoreLog(ScoreEntry(Color.Red, 25, Color.Blue, 1))
+            updateScoreLog(ScoreEntry(Color.Red, 0, Color.Blue, 25))
+            updateScoreLog(ScoreEntry(Color.Red, 24, Color.Blue, 26))
         },
         Modifier.width(200.dp),
     )

@@ -42,7 +42,7 @@ fun VolleyballScorerApp(gvm: GameViewModel) {
     ) {
         Column(modifier = Modifier
             .fillMaxHeight()
-            .width(100.dp)) {
+            .width(150.dp)) {
             Button(onClick = {
                 teamA.resetAllCountersForBothTeams() // reset both Teams scores and sets
             }) {
