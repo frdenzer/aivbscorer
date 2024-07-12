@@ -1,10 +1,7 @@
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -13,8 +10,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.aivbscorer.Team
+import com.example.aivbscorer.ui.theme.HorizontalSpacing
+import com.example.aivbscorer.ui.theme.VerticalSpacing
 
 @Preview(showBackground = true, backgroundColor = 0xF00) // Red
 @Composable
@@ -33,9 +31,8 @@ fun TeamScoreColumn(
     team: Team, modifier: Modifier = Modifier,
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
-        ) {
+        horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier
+    ) {
         val textColor = Color.White
         Text(
             text = "Score: ${team.teamScore}",
@@ -45,7 +42,7 @@ fun TeamScoreColumn(
             Button(onClick = team::score) {
                 Text("+")
             }
-            Spacer(modifier = Modifier.width(40.dp))
+            1.Times { HorizontalSpacing() }
             Button(
                 onClick = team::decrementScore,
                 enabled = team.teamScore > 0,
@@ -54,7 +51,7 @@ fun TeamScoreColumn(
                 Text("-")
             }
         }
-        Spacer(modifier = Modifier.height(10.dp))
+        VerticalSpacing()
         Text(
             text = "Sets: ${team.teamSetsWon}",
             style = MaterialTheme.typography.headlineSmall.copy(color = textColor)
@@ -65,5 +62,12 @@ fun TeamScoreColumn(
                 Text("close set with win")
             }
         }
+    }
+}
+
+@Composable
+inline fun <T> Int.Times(content: @Composable () -> T) {
+    for (i in 0 until this) {
+        content()
     }
 }
