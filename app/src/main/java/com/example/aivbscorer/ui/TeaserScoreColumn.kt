@@ -81,11 +81,8 @@ inline fun <T> Int.Times(content: @Composable () -> T) {
 @Composable
 fun ScalingText(text: String, color: Color) {
     val configuration = LocalConfiguration.current
-    val baseCharCount = 2
-    val screenWidth = configuration.screenWidthDp.dp / 2
-    val baseFontSize = screenWidth.value.sp // Base font size for baseCharCount characters
-    val adjustmentFactor = text.length.toFloat() * baseCharCount
-    val dynamicFontSize = (baseFontSize.value / adjustmentFactor).coerceAtLeast(12f).sp
+    val screenWidth = configuration.screenWidthDp.dp
+    val dynamicFontSize = (screenWidth / (text.length / 3 + 4.5f)).value.coerceAtLeast(12f).sp
 
     Text(
         text = text, style = MaterialTheme.typography.displayLarge.copy(
