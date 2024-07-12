@@ -34,7 +34,7 @@ fun TeamScoreColumn(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-
+        modifier = modifier
         ) {
         val textColor = Color.White
         Text(

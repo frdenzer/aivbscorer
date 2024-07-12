@@ -23,7 +23,9 @@ import com.example.aivbscorer.Team
 
 @Preview(showBackground = true)
 @Composable
-fun VolleyballScorerAppPreview() { VolleyballScorerApp(GameViewModel()).apply{ } }
+fun VolleyballScorerAppPreview() {
+    VolleyballScorerApp(GameViewModel()).apply { }
+}
 
 @Composable
 fun VolleyballScorerApp(gvm: GameViewModel) {
@@ -38,24 +40,31 @@ fun VolleyballScorerApp(gvm: GameViewModel) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        Column(modifier = Modifier.fillMaxHeight()) {
+        Column(modifier = Modifier
+            .fillMaxHeight()
+            .width(100.dp)) {
             Button(onClick = {
                 teamA.resetAllCountersForBothTeams() // reset both Teams scores and sets
             }) {
                 Text("Reset")
             }
             MatchScoreLog(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .width(200.dp),
-                gameViewModel = gvm
+                modifier = Modifier.fillMaxHeight(), gameViewModel = gvm
             )
         }
         TeamScoreColumn(
-            teamA
+            teamA,
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth(.5f)
+                .background(teamA.colorId)
         )
         TeamScoreColumn(
-            teamB
+            teamB,
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth(.5f)
+                .background(teamB.colorId)
         )
     }
 }
