@@ -37,8 +37,8 @@ fun TeamScoreColumn(
     ) {
         val textColor = Color.White
         Text(
-            text = "Score: ${team.teamScore}",
-            style = MaterialTheme.typography.headlineLarge.copy(color = textColor)
+            text = team.teamScore.toString(),
+            style = MaterialTheme.typography.displayLarge.copy(color = textColor)
         )
         Row {
             Button(onClick = team::score) {
