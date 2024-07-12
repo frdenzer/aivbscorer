@@ -1,7 +1,11 @@
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
@@ -10,18 +14,38 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.ScoreEntry
 
+@Preview(showBackground = true)
 @Composable
-fun MatchScoreLog(modifier: Modifier, gameViewModel: GameViewModel) {
+fun MatchScoreLogPreview() {
+    MatchScoreLog(
+        GameViewModel().apply {
+            updateScoreLog(ScoreEntry(Color.Red, 1, Color.Blue, 2))
+            updateScoreLog(ScoreEntry(Color.Red, 3, Color.Blue, 4))
+            updateScoreLog(ScoreEntry(Color.Red, 5, Color.Blue, 6))
+        },
+        Modifier.width(200.dp),
+    )
+}
+
+@Composable
+fun MatchScoreLog(
+    gameViewModel: GameViewModel,
+    modifier: Modifier = Modifier,
+) {
     val scoreLog by gameViewModel.scoreLog.collectAsState()
 
-    Text("Match Score Log")
-    LazyColumn(modifier = modifier) {
-        items(scoreLog) { scoreEntry ->
-            ScoreItem(scoreEntry)
+    Column {
+        Text("Match Score Log")
+        Spacer(modifier = Modifier.height(10.dp))
+        LazyColumn (modifier = modifier) {
+            items(scoreLog) { scoreEntry ->
+                ScoreItem(scoreEntry)
+            }
         }
     }
 }
@@ -31,7 +55,7 @@ private fun ScoreItem(scoreEntry: ScoreEntry) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(2.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text("${scoreEntry.teamAColor.name}: ${scoreEntry.teamAScore}")
@@ -55,4 +79,4 @@ val Color.name
         Color.Transparent -> "Transparent"
         Color.Unspecified -> "Unspecified"
         else -> this.toString()
-}
+    }
