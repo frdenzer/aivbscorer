@@ -13,8 +13,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.aivbscorer.Team
+
+@Preview(showBackground = true)
+@Composable
+fun TeamScoreColumnPreview() {
+    TeamScoreColumn(team = Team(Color.Red, null) {})
+}
 
 @Composable
 fun TeamScoreColumn(
@@ -28,21 +35,32 @@ fun TeamScoreColumn(
             .background(team.colorId),
     ) {
         val textColor = Color.White
-        Text(text = "Score: ${team.teamScore}", style = MaterialTheme.typography.headlineLarge.copy(color = textColor))
+        Text(
+            text = "Score: ${team.teamScore}",
+            style = MaterialTheme.typography.headlineLarge.copy(color = textColor)
+        )
         Row {
             Button(onClick = team::score) {
                 Text("+")
             }
             Spacer(modifier = Modifier.width(40.dp))
-            Button(onClick = team::decrementScore) {
+            Button(
+                onClick = team::decrementScore,
+                enabled = team.teamScore > 0,
+
+            ) {
                 Text("-")
             }
         }
         Spacer(modifier = Modifier.height(10.dp))
-        Text(text = "Sets: ${team.teamSetsWon}", style = MaterialTheme.typography.headlineSmall.copy(color = textColor))
+        Text(
+            text = "Sets: ${team.teamSetsWon}",
+            style = MaterialTheme.typography.headlineSmall.copy(color = textColor)
+        )
+        if (team.teamScore < 1) return
         Row {
             Button(onClick = team::closeSetSavingScore) {
-                Text("force finish set")
+                Text("close set with win")
             }
         }
     }

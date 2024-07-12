@@ -18,7 +18,7 @@ data class Team(
 
     fun closeSetSavingScore() {
         opponent?.let {
-            if (teamScore + it.teamScore < 1) return
+//            if (teamScore + it.teamScore < 1) return
             sendHasWonEvent(ScoreEntry(colorId, teamScore, it.colorId, it.teamScore))
             it.resetScore()
         } ?: throw IllegalStateException("Opponent is not set")
@@ -40,7 +40,6 @@ data class Team(
     }
 
     fun decrementScore() {
-        if (_teamScore < 1) return
         opponent?.let {
             _teamScore -= 1
             it.checkWinConditions()
