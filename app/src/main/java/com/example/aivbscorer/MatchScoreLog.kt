@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.ScoreEntry
@@ -33,7 +34,25 @@ private fun ScoreItem(scoreEntry: ScoreEntry) {
             .padding(8.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text("Team A: ${scoreEntry.teamAScore}")
-        Text("Team B: ${scoreEntry.teamBScore}")
+        Text("${scoreEntry.teamAColor.name}: ${scoreEntry.teamAScore}")
+        Text("${scoreEntry.teamBColor.name}: ${scoreEntry.teamBScore}")
     }
+}
+
+val Color.name
+    get() = when (this) {
+        Color.Red -> "Red"
+        Color.Blue -> "Blue"
+        Color.Green -> "Green"
+        Color.Black -> "Black"
+        Color.White -> "White"
+        Color.Gray -> "Gray"
+        Color.DarkGray -> "DarkGray"
+        Color.LightGray -> "LightGray"
+        Color.Cyan -> "Cyan"
+        Color.Magenta -> "Magenta"
+        Color.Yellow -> "Yellow"
+        Color.Transparent -> "Transparent"
+        Color.Unspecified -> "Unspecified"
+        else -> this.toString()
 }

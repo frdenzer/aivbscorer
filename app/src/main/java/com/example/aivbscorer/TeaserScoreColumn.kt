@@ -25,7 +25,7 @@ fun TeamScoreColumn(
         modifier = Modifier
             .fillMaxHeight()
             .fillMaxWidth(.25f)
-            .background(team.teamColor),
+            .background(team.colorId),
     ) {
         val textColor = Color.White
         Text(text = "Score: ${team.teamScore}", style = MaterialTheme.typography.headlineLarge.copy(color = textColor))

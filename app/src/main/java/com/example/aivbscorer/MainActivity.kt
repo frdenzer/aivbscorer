@@ -91,6 +91,6 @@ fun VolleyballScorerApp(gvm: GameViewModel) {
 }
 
 
-data class ScoreEntry(val teamAScore: Int, val teamBScore: Int)
+data class ScoreEntry(val teamAColor: Color, val teamAScore: Int, val teamBColor: Color, val teamBScore: Int)
 
 
