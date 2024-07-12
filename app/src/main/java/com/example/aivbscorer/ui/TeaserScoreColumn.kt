@@ -1,3 +1,4 @@
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -33,7 +34,7 @@ fun TeamScoreColumn(
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-
+        verticalArrangement = Arrangement.Center // This will center the Row vertically
     ) {
         val textColor = Color.White
         Text(

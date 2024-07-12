@@ -40,7 +40,7 @@ fun VolleyballScorerApp(gvm: GameViewModel) {
         modifier = Modifier
             .fillMaxSize()
             .width(WIDTH),
-        horizontalAlignment = Alignment.CenterHorizontally // This centers the items horizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Row(
             modifier = Modifier
