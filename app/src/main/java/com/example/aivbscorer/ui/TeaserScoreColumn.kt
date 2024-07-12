@@ -1,4 +1,3 @@
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,23 +16,26 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.aivbscorer.Team
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, backgroundColor = 0xF00) // Red
 @Composable
 fun TeamScoreColumnPreview() {
-    TeamScoreColumn(team = Team(Color.Red, null) {})
+    TeamScoreColumn(
+        team = Team(Color.Red, null) {},
+        modifier = Modifier
+            .fillMaxHeight()
+            .fillMaxWidth(.25f),
+        // .background(Color.hsl(0, 1f, 0.5f)), // Red
+    )
 }
 
 @Composable
 fun TeamScoreColumn(
-    team: Team
+    team: Team, modifier: Modifier = Modifier,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth(.25f)
-            .background(team.colorId),
-    ) {
+
+        ) {
         val textColor = Color.White
         Text(
             text = "Score: ${team.teamScore}",
@@ -48,7 +50,7 @@ fun TeamScoreColumn(
                 onClick = team::decrementScore,
                 enabled = team.teamScore > 0,
 
-            ) {
+                ) {
                 Text("-")
             }
         }
