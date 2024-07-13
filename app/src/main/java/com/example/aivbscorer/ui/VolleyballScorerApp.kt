@@ -62,7 +62,7 @@ fun VolleyballScorerApp(gvm: GameViewModel) {
         Button(onClick = {
             teamA.resetAllCountersForBothTeams() // reset both Teams scores and sets
         }) {
-            Text("Reset score log")
+            Text("Reset score log") // TODO: 1. move onto new fullscreen log screen. 2. make more secure to delete.
         }
         MatchScoreLog(
             modifier = Modifier.fillMaxWidth()
