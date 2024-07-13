@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 
 data class Team(
-    var colorId: Color, var opponent: Team?, private val sendHasWonEvent: (ScoreEntry) -> Unit
+    var colorId: Color, var opponent: Team?, private val sendHasWonEvent: (ScoreEntry) -> Unit,
 ) {
     private var _teamScore by mutableIntStateOf(0)
     val teamScore: Int
@@ -51,7 +51,10 @@ data class Team(
     }
 
     fun resetAllCountersForBothTeams() {
-        opponent?.resetScore() ?: throw IllegalStateException("Opponent is not set")
+        opponent?.apply {
+            resetScore()
+            _teamSetsWon = 0
+        } ?: throw IllegalStateException("Opponent is not set")
         _teamScore = 0
         _teamSetsWon = 0
     }
