@@ -1,4 +1,4 @@
-package com.example.aivbscorer.ui
+package com.example.aivbscorer.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,8 +17,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aivbscorer.data.Team
-import com.example.aivbscorer.ui.theme.HorizontalSpacing
-import com.example.aivbscorer.ui.theme.VerticalSpacing
+import com.example.aivbscorer.theme.HorizontalSpacing
+import com.example.aivbscorer.theme.VerticalSpacing
 
 @Preview(showBackground = true, backgroundColor = 0xF00) // Red
 @Composable

@@ -2,8 +2,8 @@ package com.example.aivbscorer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.aivbscorer.data.GameEvent
 import com.example.aivbscorer.data.ScoreEntry
+import com.example.aivbscorer.eventing.GameEvent
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow

@@ -1,4 +1,4 @@
-package com.example.aivbscorer.ui.theme
+package com.example.aivbscorer.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*

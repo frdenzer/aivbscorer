@@ -1,4 +1,4 @@
-package com.example.aivbscorer.ui
+package com.example.aivbscorer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,9 +18,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.data.Constants.WIDTH
 import com.example.aivbscorer.data.Team
+import com.example.aivbscorer.components.AbbreviatedSetLog
+import com.example.aivbscorer.components.TeamScoreColumn
 
 @Preview(showBackground = true)
 @Composable

@@ -1,13 +1,10 @@
-package com.example.aivbscorer.navigation
+package com.example.aivbscorer
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.aivbscorer.GameViewModel
-import com.example.aivbscorer.ui.ScoreLogScreen
-import com.example.aivbscorer.ui.ScoresScreen
-import com.example.aivbscorer.ui.theme.VolleyballScorerTheme
+import com.example.aivbscorer.theme.VolleyballScorerTheme
 
 @Composable
 fun AppNavigation(viewModel: GameViewModel) {

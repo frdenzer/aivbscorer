@@ -1,6 +1,6 @@
-package com.example.aivbscorer
+package com.example.aivbscorer.eventing
 
-import com.example.aivbscorer.data.GameEvent
+import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.data.ScoreEntry
 import kotlinx.coroutines.flow.FlowCollector
 

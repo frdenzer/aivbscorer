@@ -1,4 +1,4 @@
-package com.example.aivbscorer.ui
+package com.example.aivbscorer.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -22,7 +22,7 @@ import com.example.aivbscorer.data.ScoreEntry
 import com.example.aivbscorer.data.Constants.TWO
 import com.example.aivbscorer.data.Constants.WIDTH
 import androidx.navigation.compose.rememberNavController
-import com.example.aivbscorer.ui.theme.name
+import com.example.aivbscorer.theme.name
 
 @Composable
 fun previewNavController(): NavController {
