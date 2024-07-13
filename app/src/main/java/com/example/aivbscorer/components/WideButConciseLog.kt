@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
@@ -20,7 +19,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.data.Constants.TWO
-import com.example.aivbscorer.data.Constants.WIDTH
 import com.example.aivbscorer.data.ScoreEntry
 import com.example.aivbscorer.theme.name
 
@@ -32,25 +30,19 @@ fun previewNavController(): NavController {
 @Preview(showBackground = true)
 @Composable
 fun MatchSetLogBookPreview() {
-    AbbreviatedSetLog(
-        GameViewModel.apply {
-            updateSetLogBook(ScoreEntry(Color.Red, 25, Color.Blue, 1))
-            updateSetLogBook(ScoreEntry(Color.Red, 0, Color.Blue, 25))
-            updateSetLogBook(ScoreEntry(Color.Red, 24, Color.Blue, 26))
-        },
-        // no controller in IED preview
-        navController = previewNavController(),
-        modifier = Modifier.width(WIDTH + 1.dp), // +1 dp to avoid linebreak in preview. Real app is fine
-    )
+    GameViewModel.apply {
+        updateSetLogBook(ScoreEntry(Color.Red, 25, Color.Blue, 1))
+        updateSetLogBook(ScoreEntry(Color.Red, 0, Color.Blue, 25))
+        updateSetLogBook(ScoreEntry(Color.Red, 24, Color.Blue, 26))
+    }
+    WideButConciseLog()
 }
 
 @Composable
-fun AbbreviatedSetLog(
-    gameViewModel: GameViewModel,
-    navController: NavController,
-    modifier: Modifier = Modifier,
-) {
-    val setLogBook by gameViewModel.setLog.collectAsState()
+fun WideButConciseLog() {
+    val modifier: Modifier = Modifier.fillMaxWidth()
+    val setLogBook by GameViewModel.setLog.collectAsState()
+    val navController = rememberNavController()
 
     LazyColumn(modifier = modifier) {
         // take three, if at most three items are available
