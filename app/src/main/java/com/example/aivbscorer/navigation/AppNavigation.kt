@@ -6,7 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.ui.ScoreLogScreen
-import com.example.aivbscorer.ui.VolleyballScorerApp
+import com.example.aivbscorer.ui.ScoresScreen
 import com.example.aivbscorer.ui.theme.VolleyballScorerTheme
 
 @Composable
@@ -15,7 +15,7 @@ fun AppNavigation(viewModel: GameViewModel) {
     VolleyballScorerTheme {
         NavHost(navController = navController, startDestination = "main") {
             composable("main") {
-                VolleyballScorerApp(viewModel, navController)
+                ScoresScreen(viewModel, navController)
             }
             composable("scoreLog") { ScoreLogScreen(viewModel, navController) }
         }
