@@ -6,8 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.aivbscorer.navigation.AppNavigation
-import com.example.aivbscorer.ui.VolleyballScorerApp
-import com.example.aivbscorer.ui.theme.VolleyballScorerTheme
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -17,29 +15,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         lifecycleScope.launch {
-            viewModel.gameEvents.collect { event: GameEvent ->
-                when (event) {
-                    is GameEvent.HasWonEvent -> {
-                        // Update UI based on the winning team
-                        updateTeamScores(event.finalScore)
-                    }
-                    is GameEvent.ResetSetEvent -> {
-                        viewModel.resetSetLog()
-                    }
-                    else -> { /* Ignore other events */}
-                }
-            }
+            viewModel.gameEvents.collect(GameEventCollector(viewModel)::emit)
         }
 
         setContent {
             AppNavigation(viewModel)
         }
     }
-
-    private fun updateTeamScores(entry: ScoreEntry) {
-        viewModel.updateScoreLog(entry)
-    }
 }
-
-
-
