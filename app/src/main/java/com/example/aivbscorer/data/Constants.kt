@@ -1,4 +1,4 @@
-package com.example.aivbscorer.ui
+package com.example.aivbscorer.data
 
 import androidx.compose.ui.unit.dp
 

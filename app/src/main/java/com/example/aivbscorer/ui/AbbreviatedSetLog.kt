@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.data.ScoreEntry
-import com.example.aivbscorer.ui.Constants.TWO
-import com.example.aivbscorer.ui.Constants.WIDTH
+import com.example.aivbscorer.data.Constants.TWO
+import com.example.aivbscorer.data.Constants.WIDTH
 import androidx.navigation.compose.rememberNavController
 import com.example.aivbscorer.ui.theme.name
 
