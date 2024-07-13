@@ -5,15 +5,13 @@ import com.example.aivbscorer.data.ScoreEntry
 import kotlinx.coroutines.flow.FlowCollector
 
 class GameEventCollector : FlowCollector<GameEvent> {
-    override suspend fun emit(value: GameEvent) {
-        when (value) {
-            is GameEvent.HasWonEvent -> {
-                updateTeamScores(value.finalScore)
-            }
+    override suspend fun emit(value: GameEvent) = when (value) {
+        is GameEvent.HasWonEvent -> {
+            updateTeamScores(value.finalScore)
+        }
 
-            is GameEvent.ResetSetEvent -> {
-                GameViewModel.resetSetLog()
-            }
+        is GameEvent.ResetSetEvent -> {
+            GameViewModel.resetSetLog()
         }
     }
 
