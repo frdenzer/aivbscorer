@@ -12,7 +12,7 @@ fun AppNavigation(viewModel: GameViewModel) {
     VolleyballScorerTheme {
         NavHost(navController = navController, startDestination = "main") {
             composable("main") {
-                ScoresScreen(viewModel, navController)
+                ScoringScreen(viewModel, navController)
             }
             composable("scoreLog") { ScoreLogScreen(viewModel, navController) }
         }

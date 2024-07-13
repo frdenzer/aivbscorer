@@ -18,19 +18,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.aivbscorer.data.Constants.WIDTH
-import com.example.aivbscorer.data.Team
 import com.example.aivbscorer.components.AbbreviatedSetLog
 import com.example.aivbscorer.components.TeamScoreColumn
+import com.example.aivbscorer.data.Constants.WIDTH
+import com.example.aivbscorer.data.Team
 
 @Preview(showBackground = true)
 @Composable
-fun ScoresScreenPreview() {
-    ScoresScreen(GameViewModel, rememberNavController()).apply { }
+fun ScoringScreenPreview() {
+    ScoringScreen(GameViewModel, rememberNavController()).apply { }
 }
 
 @Composable
-fun ScoresScreen(gvm: GameViewModel, navController: NavController) {
+fun ScoringScreen(gvm: GameViewModel, navController: NavController) {
     val teamA = remember { Team(Color.Red, null, gvm::onSetWon, gvm::onResetSetLog) }
     val teamB = remember { Team(Color.Blue, teamA, gvm::onSetWon, gvm::onResetSetLog) }
     teamA.opponent = teamB
