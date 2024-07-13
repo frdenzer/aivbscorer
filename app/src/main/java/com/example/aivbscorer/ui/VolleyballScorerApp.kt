@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -19,7 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.Team
 import com.example.aivbscorer.ui.constants.WIDTH
@@ -60,17 +58,16 @@ fun VolleyballScorerApp(gvm: GameViewModel) {
                 teamB, commonModifier.background(teamB.colorId)
             )
         }
+        if (teamA.teamSetsWon + teamB.teamSetsWon == 0) return
         Button(onClick = {
             teamA.resetAllCountersForBothTeams() // reset both Teams scores and sets
         }) {
-            Text("Reset")
+            Text("Reset score log")
         }
         MatchScoreLog(
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
 //                .height(200.dp)
-            ,
-            gameViewModel = gvm
+            , gameViewModel = gvm
         )
     }
 }

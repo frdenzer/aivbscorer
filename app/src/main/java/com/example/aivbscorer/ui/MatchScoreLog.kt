@@ -41,8 +41,6 @@ fun MatchScoreLog(
     val scoreLog by gameViewModel.scoreLog.collectAsState()
 
     Column {
-        Text("Match Score Log")
-        VerticalSpacing()
         LazyColumn (modifier = modifier) {
             // take three, if at most three items are available
             items(scoreLog.take(TWO)) { scoreEntry ->
