@@ -30,8 +30,8 @@ fun previewNavController(): NavController {
 @Preview(showBackground = true)
 @Composable
 fun MatchScoreLogPreview() {
-    MatchScoreLog(
-        GameViewModel().apply {
+    AbbreviatedSetLog(
+        GameViewModel.apply {
             updateScoreLog(ScoreEntry(Color.Red, 25, Color.Blue, 1))
             updateScoreLog(ScoreEntry(Color.Red, 0, Color.Blue, 25))
             updateScoreLog(ScoreEntry(Color.Red, 24, Color.Blue, 26))
@@ -43,7 +43,7 @@ fun MatchScoreLogPreview() {
 }
 
 @Composable
-fun MatchScoreLog(
+fun AbbreviatedSetLog(
     gameViewModel: GameViewModel,
     navController: NavController,
     modifier: Modifier = Modifier,

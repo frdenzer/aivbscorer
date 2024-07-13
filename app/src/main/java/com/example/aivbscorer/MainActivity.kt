@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.aivbscorer.navigation.AppNavigation
 import com.example.aivbscorer.ui.VolleyballScorerApp
 import com.example.aivbscorer.ui.theme.VolleyballScorerTheme
 import kotlinx.coroutines.launch
@@ -31,9 +32,7 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            VolleyballScorerTheme {
-                VolleyballScorerApp(viewModel)
-            }
+            AppNavigation(viewModel)
         }
     }
 

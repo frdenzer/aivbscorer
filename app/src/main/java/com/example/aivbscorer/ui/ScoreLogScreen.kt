@@ -7,7 +7,10 @@ import androidx.navigation.NavController
 import com.example.aivbscorer.GameViewModel
 
 @Composable
-fun ScoreLogScreen(navController: NavController, vm: GameViewModel) {
+fun ScoreLogScreen(
+    vm: GameViewModel,
+    navController: NavController,
+) {
     // Assuming GameViewModel is accessible here, either passed as a parameter or obtained via viewModel()
     val scoreLog by vm.scoreLog.collectAsState()
 

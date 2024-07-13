@@ -1,6 +1,6 @@
 package com.example.aivbscorer.ui
 
-import MatchScoreLog
+import AbbreviatedSetLog
 import TeamScoreColumn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,6 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.Team
 import com.example.aivbscorer.ui.constants.WIDTH
@@ -25,11 +27,11 @@ import com.example.aivbscorer.ui.constants.WIDTH
 @Preview(showBackground = true)
 @Composable
 fun VolleyballScorerAppPreview() {
-    VolleyballScorerApp(GameViewModel()).apply { }
+    VolleyballScorerApp(GameViewModel, rememberNavController()).apply { }
 }
 
 @Composable
-fun VolleyballScorerApp(gvm: GameViewModel) {
+fun VolleyballScorerApp(gvm: GameViewModel, navController: NavController) {
     val teamA = remember { Team(Color.Red, null, gvm::onSetWon, gvm::onResetSetLog) }
     val teamB = remember { Team(Color.Blue, teamA, gvm::onSetWon, gvm::onResetSetLog) }
     teamA.opponent = teamB
@@ -64,10 +66,10 @@ fun VolleyballScorerApp(gvm: GameViewModel) {
         }) {
             Text("Reset score log") // TODO: 1. move onto new fullscreen log screen. 2. make more secure to delete.
         }
-        MatchScoreLog(
-            modifier = Modifier.fillMaxWidth()
+        AbbreviatedSetLog(
+            gameViewModel = gvm
 //                .height(200.dp)
-            , gameViewModel = gvm
+            , navController, modifier = Modifier.fillMaxWidth()
         )
     }
 }
