@@ -25,14 +25,10 @@ import com.example.aivbscorer.data.Team
 
 @Preview(showBackground = true)
 @Composable
-fun ScoringScreenPreview() {
-    ScoringScreen(GameViewModel, rememberNavController()).apply { }
-}
-
-@Composable
-fun ScoringScreen(gvm: GameViewModel, navController: NavController) {
-    val teamA = remember { Team(Color.Red, null, gvm::onSetWon, gvm::onResetSetLog) }
-    val teamB = remember { Team(Color.Blue, teamA, gvm::onSetWon, gvm::onResetSetLog) }
+fun ScoringScreen() {
+    val navController: NavController = rememberNavController()
+    val teamA = remember { Team(Color.Red, null, GameViewModel::onSetWon, GameViewModel::onResetSetLog) }
+    val teamB = remember { Team(Color.Blue, teamA, GameViewModel::onSetWon, GameViewModel::onResetSetLog) }
     teamA.opponent = teamB
 
     Column(
@@ -66,9 +62,8 @@ fun ScoringScreen(gvm: GameViewModel, navController: NavController) {
             Text("Reset score log") // TODO: 1. move onto new fullscreen log screen. 2. make more secure to delete.
         }
         AbbreviatedSetLog(
-            gameViewModel = gvm
+            GameViewModel, navController, modifier = Modifier.fillMaxWidth()
 //                .height(200.dp)
-            , navController, modifier = Modifier.fillMaxWidth()
         )
     }
 }

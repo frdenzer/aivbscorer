@@ -7,12 +7,12 @@ import androidx.navigation.compose.rememberNavController
 import com.example.aivbscorer.theme.VolleyballScorerTheme
 
 @Composable
-fun AppNavigation(viewModel: GameViewModel) {
+fun AppNavigation() {
     val navController = rememberNavController()
     VolleyballScorerTheme {
         NavHost(navController = navController, startDestination = "ScoringScreen") {
-            composable("ScoringScreen") { ScoringScreen(viewModel, navController) }
-            composable("SetLogBookScreen") { SetLogBookScreen(viewModel, navController) }
+            composable("ScoringScreen") { ScoringScreen() }
+            composable("SetLogBookScreen") { SetLogBookScreen() }
         }
     }
 }
