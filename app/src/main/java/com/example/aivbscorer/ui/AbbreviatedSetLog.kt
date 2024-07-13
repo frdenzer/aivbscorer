@@ -1,3 +1,5 @@
+package com.example.aivbscorer.ui
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,8 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.ScoreEntry
-import com.example.aivbscorer.ui.constants.TWO
-import com.example.aivbscorer.ui.constants.WIDTH
+import com.example.aivbscorer.ui.Constants.TWO
+import com.example.aivbscorer.ui.Constants.WIDTH
 import androidx.navigation.compose.rememberNavController
 import com.example.aivbscorer.ui.theme.name
 

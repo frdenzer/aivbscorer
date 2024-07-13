@@ -2,7 +2,7 @@ package com.example.aivbscorer
 
 import kotlinx.coroutines.flow.FlowCollector
 
-class GameEventCollector(private val viewModel: GameViewModel) : FlowCollector<GameEvent> {
+class GameEventCollector : FlowCollector<GameEvent> {
     override suspend fun emit(value: GameEvent) {
         when (value) {
             is GameEvent.HasWonEvent -> {

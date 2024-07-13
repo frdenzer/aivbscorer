@@ -1,7 +1,5 @@
 package com.example.aivbscorer.ui
 
-import AbbreviatedSetLog
-import TeamScoreColumn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,7 +20,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.Team
-import com.example.aivbscorer.ui.constants.WIDTH
+import com.example.aivbscorer.ui.Constants.WIDTH
 
 @Preview(showBackground = true)
 @Composable

@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         lifecycleScope.launch {
-            viewModel.gameEvents.collect(GameEventCollector(viewModel)::emit)
+            viewModel.gameEvents.collect(GameEventCollector()::emit)
         }
 
         setContent {
