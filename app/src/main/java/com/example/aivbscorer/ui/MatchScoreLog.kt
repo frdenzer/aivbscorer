@@ -14,10 +14,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.ScoreEntry
 import com.example.aivbscorer.ui.constants.TWO
 import com.example.aivbscorer.ui.constants.WIDTH
+import androidx.navigation.compose.rememberNavController
+import com.example.aivbscorer.ui.theme.name
+
+@Composable
+fun previewNavController(): NavController {
+    return rememberNavController()
+}
 
 @Preview(showBackground = true)
 @Composable
@@ -28,6 +36,8 @@ fun MatchScoreLogPreview() {
             updateScoreLog(ScoreEntry(Color.Red, 0, Color.Blue, 25))
             updateScoreLog(ScoreEntry(Color.Red, 24, Color.Blue, 26))
         },
+        // no controller in IED preview
+        navController = previewNavController(),
         modifier = Modifier.width(WIDTH + 1.dp), // +1 dp to avoid linebreak in preview. Real app is fine
     )
 }
@@ -35,6 +45,7 @@ fun MatchScoreLogPreview() {
 @Composable
 fun MatchScoreLog(
     gameViewModel: GameViewModel,
+    navController: NavController,
     modifier: Modifier = Modifier,
 ) {
     val scoreLog by gameViewModel.scoreLog.collectAsState()
@@ -44,13 +55,13 @@ fun MatchScoreLog(
         items(scoreLog.take(TWO)) { scoreEntry ->
             ScoreItem(scoreEntry)
         }
-        if (scoreLog.size > TWO) {
-            item {
-                Button(onClick = { /* navigateTo("scoreLog")*/ }) {
-                    Text(text = "Show all")
-                }
+//        if (scoreLog.size > TWO) {
+        item {
+            Button(onClick = { navController.navigate("scoreLog") }) {
+                Text(text = "Show all")
             }
         }
+//        }
     }
 }
 
@@ -66,20 +77,3 @@ fun ScoreItem(scoreEntry: ScoreEntry) {
     }
 }
 
-val Color.name
-    get() = when (this) {
-        Color.Red -> "Red"
-        Color.Blue -> "Blue"
-        Color.Green -> "Green"
-        Color.Black -> "Black"
-        Color.White -> "White"
-        Color.Gray -> "Gray"
-        Color.DarkGray -> "DarkGray"
-        Color.LightGray -> "LightGray"
-        Color.Cyan -> "Cyan"
-        Color.Magenta -> "Magenta"
-        Color.Yellow -> "Yellow"
-        Color.Transparent -> "Transparent"
-        Color.Unspecified -> "Unspecified"
-        else -> this.toString()
-    }
