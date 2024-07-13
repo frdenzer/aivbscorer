@@ -22,6 +22,9 @@ class MainActivity : ComponentActivity() {
                         // Update UI based on the winning team
                         updateTeamScores(event.finalScore)
                     }
+                    is GameEvent.ResetSetEvent -> {
+                        viewModel.resetSetLog()
+                    }
                     else -> { /* Ignore other events */}
                 }
             }

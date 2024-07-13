@@ -21,6 +21,18 @@ class GameViewModel : ViewModel() {
         }
     }
 
+    fun onResetSetLog() {
+        viewModelScope.launch {
+            _gameEvents.emit(GameEvent.ResetSetEvent)
+        }
+    }
+
+    fun resetSetLog() {
+        viewModelScope.launch {
+            _scoreLog.value = emptyList()
+        }
+    }
+
     // MatchScoreLog instance needs to get informed that a result needs to be stored
     fun updateScoreLog(entry: ScoreEntry) {
         viewModelScope.launch {
@@ -34,5 +46,8 @@ class GameViewModel : ViewModel() {
 
 sealed class GameEvent {
     data class HasWonEvent(val finalScore: ScoreEntry)
+        : GameEvent()
+
+    data object ResetSetEvent
         : GameEvent()
 }

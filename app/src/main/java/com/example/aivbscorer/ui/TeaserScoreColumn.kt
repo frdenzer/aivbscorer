@@ -22,7 +22,7 @@ import com.example.aivbscorer.ui.theme.VerticalSpacing
 @Composable
 fun TeamScoreColumnPreview() {
     TeamScoreColumn(
-        team = Team(Color.Red, null) {},
+        team = Team(Color.Red, null, sendHasWonEvent = {}, sendResetLogEvent = {}),
         modifier = Modifier
             .fillMaxHeight()
             .fillMaxWidth(),

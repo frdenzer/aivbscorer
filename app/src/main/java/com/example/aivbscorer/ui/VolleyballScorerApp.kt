@@ -30,8 +30,8 @@ fun VolleyballScorerAppPreview() {
 
 @Composable
 fun VolleyballScorerApp(gvm: GameViewModel) {
-    val teamA = remember { Team(Color.Red, null, gvm::onSetWon) }
-    val teamB = remember { Team(Color.Blue, teamA, gvm::onSetWon) }
+    val teamA = remember { Team(Color.Red, null, gvm::onSetWon, gvm::onResetSetLog) }
+    val teamB = remember { Team(Color.Blue, teamA, gvm::onSetWon, gvm::onResetSetLog) }
     teamA.opponent = teamB
 
     Column(

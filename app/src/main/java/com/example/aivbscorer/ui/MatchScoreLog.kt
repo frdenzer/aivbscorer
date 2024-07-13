@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -18,7 +19,6 @@ import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.ScoreEntry
 import com.example.aivbscorer.ui.constants.TWO
 import com.example.aivbscorer.ui.constants.WIDTH
-import com.example.aivbscorer.ui.theme.VerticalSpacing
 
 @Preview(showBackground = true)
 @Composable
@@ -41,14 +41,16 @@ fun MatchScoreLog(
     val scoreLog by gameViewModel.scoreLog.collectAsState()
 
     Column {
-        LazyColumn (modifier = modifier) {
+        LazyColumn(modifier = modifier) {
             // take three, if at most three items are available
             items(scoreLog.take(TWO)) { scoreEntry ->
                 ScoreItem(scoreEntry)
             }
-            if (scoreLog.size > TWO){
+            if (scoreLog.size > TWO) {
                 item {
-                    Text("...")
+                    Button(onClick = { /*TODO*/ }) {
+                        Text(text = "Show all")
+                    }
                 }
             }
         }
@@ -60,8 +62,7 @@ private fun ScoreItem(scoreEntry: ScoreEntry) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(2.dp),
-        horizontalArrangement = Arrangement.Start
+            .padding(2.dp), horizontalArrangement = Arrangement.Start
     ) {
         Text("${scoreEntry.teamAColor.name}: ${scoreEntry.teamAScore}")
         Text("${scoreEntry.teamBColor.name}: ${scoreEntry.teamBScore}")
