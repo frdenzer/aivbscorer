@@ -25,7 +25,7 @@ class GameViewModel : ViewModel() {
     fun updateScoreLog(entry: ScoreEntry) {
         viewModelScope.launch {
             val updatedLog = _scoreLog.value.toMutableList().apply {
-                add(entry)
+                add(0, entry) // top of list for better displaying
             }
             _scoreLog.value = updatedLog
         }
