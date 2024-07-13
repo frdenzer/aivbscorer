@@ -48,14 +48,14 @@ fun VolleyballScorerApp(gvm: GameViewModel) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            val commonModifier = Modifier
+            val modifier = Modifier
                 .weight(1f)
                 .fillMaxHeight()
             TeamScoreColumn(
-                teamA, commonModifier.background(teamA.colorId)
+                teamA, modifier.background(teamA.colorId)
             )
             TeamScoreColumn(
-                teamB, commonModifier.background(teamB.colorId)
+                teamB, modifier.background(teamB.colorId)
             )
         }
         if (teamA.teamSetsWon + teamB.teamSetsWon == 0) return

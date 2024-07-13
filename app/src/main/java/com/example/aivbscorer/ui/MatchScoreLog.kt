@@ -29,7 +29,7 @@ fun MatchScoreLogPreview() {
             updateScoreLog(ScoreEntry(Color.Red, 0, Color.Blue, 25))
             updateScoreLog(ScoreEntry(Color.Red, 24, Color.Blue, 26))
         },
-        Modifier.width(WIDTH),
+        modifier = Modifier.width(WIDTH),
     )
 }
 
