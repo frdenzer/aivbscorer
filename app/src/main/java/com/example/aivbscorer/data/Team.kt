@@ -1,4 +1,4 @@
-package com.example.aivbscorer
+package com.example.aivbscorer.data
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf

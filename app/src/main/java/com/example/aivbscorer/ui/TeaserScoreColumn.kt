@@ -16,7 +16,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.aivbscorer.Team
+import com.example.aivbscorer.data.Team
 import com.example.aivbscorer.ui.theme.HorizontalSpacing
 import com.example.aivbscorer.ui.theme.VerticalSpacing
 

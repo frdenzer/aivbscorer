@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.aivbscorer.GameViewModel
-import com.example.aivbscorer.Team
+import com.example.aivbscorer.data.Team
 import com.example.aivbscorer.ui.Constants.WIDTH
 
 @Preview(showBackground = true)
