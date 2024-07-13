@@ -55,7 +55,7 @@ fun MatchScoreLog(
 }
 
 @Composable
-private fun ScoreItem(scoreEntry: ScoreEntry) {
+fun ScoreItem(scoreEntry: ScoreEntry) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
