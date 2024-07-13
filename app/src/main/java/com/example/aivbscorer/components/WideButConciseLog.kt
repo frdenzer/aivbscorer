@@ -23,11 +23,6 @@ import com.example.aivbscorer.data.Constants.TWO
 import com.example.aivbscorer.data.ScoreEntry
 import com.example.aivbscorer.theme.name
 
-@Composable
-fun previewNavController(): NavController {
-    return rememberNavController()
-}
-
 @Preview(showBackground = true)
 @Composable
 fun MatchSetLogBookPreview() {
@@ -36,14 +31,13 @@ fun MatchSetLogBookPreview() {
         updateSetLogBook(ScoreEntry(Color.Red, 0, Color.Blue, 25))
         updateSetLogBook(ScoreEntry(Color.Red, 24, Color.Blue, 26))
     }
-    WideButConciseLog()
+    WideButConciseLog(rememberNavController())
 }
 
 @Composable
-fun WideButConciseLog() {
+fun WideButConciseLog(navController: NavController) {
     val modifier: Modifier = Modifier.fillMaxWidth()
     val setLogBook by GameViewModel.setLog.collectAsState()
-    val navController = rememberNavController()
 
     LazyColumn(modifier = modifier) {
         // take three, if at most three items are available

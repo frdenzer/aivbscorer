@@ -11,8 +11,8 @@ fun AppNavigation() {
     val navController = rememberNavController()
     VolleyballScorerTheme {
         NavHost(navController = navController, startDestination = Routes.ScoringScreen.name) {
-            composable(Routes.ScoringScreen.name) { ScoringScreen() }
-            composable(Routes.SetLogBookScreen.name) { SetLogBookScreen() }
+            composable(Routes.ScoringScreen.name) { ScoringScreen(navController) }
+            composable(Routes.SetLogBookScreen.name) { SetLogBookScreen(navController) }
         }
     }
 }

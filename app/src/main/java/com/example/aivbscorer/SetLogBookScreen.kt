@@ -24,12 +24,11 @@ fun PreviewSetLogBookScreen() {
         updateSetLogBook(ScoreEntry(Color.Red, 0, Color.Blue, 25))
         updateSetLogBook(ScoreEntry(Color.Red, 24, Color.Blue, 26))
     }
-    SetLogBookScreen()
+    SetLogBookScreen(rememberNavController())
 }
 
 @Composable
-fun SetLogBookScreen() {
-    val navController: NavController = rememberNavController()
+fun SetLogBookScreen(navController: NavController) {
     // Assuming GameViewModel is accessible here, either passed as a parameter or obtained via viewModel()
     val setLogBook by GameViewModel.setLog.collectAsState()
 
