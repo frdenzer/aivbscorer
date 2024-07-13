@@ -1,5 +1,6 @@
 package com.example.aivbscorer
 
+import com.example.aivbscorer.data.GameEvent
 import com.example.aivbscorer.data.ScoreEntry
 import kotlinx.coroutines.flow.FlowCollector
 

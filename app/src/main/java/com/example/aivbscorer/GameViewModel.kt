@@ -2,6 +2,7 @@ package com.example.aivbscorer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.aivbscorer.data.GameEvent
 import com.example.aivbscorer.data.ScoreEntry
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -45,10 +46,3 @@ object GameViewModel : ViewModel() {
     }
 }
 
-sealed class GameEvent {
-    data class HasWonEvent(val finalScore: ScoreEntry)
-        : GameEvent()
-
-    data object ResetSetEvent
-        : GameEvent()
-}
