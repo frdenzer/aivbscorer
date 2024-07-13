@@ -11,9 +11,7 @@ fun AppNavigation(viewModel: GameViewModel) {
     val navController = rememberNavController()
     VolleyballScorerTheme {
         NavHost(navController = navController, startDestination = "main") {
-            composable("main") {
-                ScoringScreen(viewModel, navController)
-            }
+            composable("main") { ScoringScreen(viewModel, navController) }
             composable("scoreLog") { ScoreLogScreen(viewModel, navController) }
         }
     }
