@@ -62,12 +62,11 @@ fun TeamScoreColumn(
             text = "Sets: ${team.teamSetsWon}",
             style = MaterialTheme.typography.headlineSmall.copy(color = textColor)
         )
-        // if (team.teamScore < 1) return
-        // Row {
-        //     Button(onClick = team::closeSetSavingScore) {
-        //         Text("close set with win")
-        //     }
-        // }
+        Row {
+            Button(enabled = team.teamScore > 0, onClick = team::closeSetSavingScore) {
+                Text("close set as win")
+            }
+        }
     }
 }
 
