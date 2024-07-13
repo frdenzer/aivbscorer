@@ -17,11 +17,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.aivbscorer.GameViewModel
-import com.example.aivbscorer.data.ScoreEntry
 import com.example.aivbscorer.data.Constants.TWO
 import com.example.aivbscorer.data.Constants.WIDTH
-import androidx.navigation.compose.rememberNavController
+import com.example.aivbscorer.data.ScoreEntry
 import com.example.aivbscorer.theme.name
 
 @Composable
@@ -31,12 +31,12 @@ fun previewNavController(): NavController {
 
 @Preview(showBackground = true)
 @Composable
-fun MatchScoreLogPreview() {
+fun MatchSetLogBookPreview() {
     AbbreviatedSetLog(
         GameViewModel.apply {
-            updateScoreLog(ScoreEntry(Color.Red, 25, Color.Blue, 1))
-            updateScoreLog(ScoreEntry(Color.Red, 0, Color.Blue, 25))
-            updateScoreLog(ScoreEntry(Color.Red, 24, Color.Blue, 26))
+            updateSetLogBook(ScoreEntry(Color.Red, 25, Color.Blue, 1))
+            updateSetLogBook(ScoreEntry(Color.Red, 0, Color.Blue, 25))
+            updateSetLogBook(ScoreEntry(Color.Red, 24, Color.Blue, 26))
         },
         // no controller in IED preview
         navController = previewNavController(),
@@ -50,20 +50,18 @@ fun AbbreviatedSetLog(
     navController: NavController,
     modifier: Modifier = Modifier,
 ) {
-    val scoreLog by gameViewModel.scoreLog.collectAsState()
+    val setLogBook by gameViewModel.setLog.collectAsState()
 
     LazyColumn(modifier = modifier) {
         // take three, if at most three items are available
-        items(scoreLog.take(TWO)) { scoreEntry ->
+        items(setLogBook.take(TWO)) { scoreEntry ->
             ScoreItem(scoreEntry)
         }
-//        if (scoreLog.size > TWO) {
         item {
-            Button(onClick = { navController.navigate("scoreLog") }) {
+            Button(onClick = { navController.navigate("SetLogBookScreen") }) {
                 Text(text = "Show all")
             }
         }
-//        }
     }
 }
 

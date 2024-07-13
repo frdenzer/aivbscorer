@@ -1,21 +1,16 @@
 package com.example.aivbscorer.eventing
 
 import com.example.aivbscorer.GameViewModel
-import com.example.aivbscorer.data.ScoreEntry
 import kotlinx.coroutines.flow.FlowCollector
 
 class GameEventCollector : FlowCollector<GameEvent> {
     override suspend fun emit(value: GameEvent) = when (value) {
         is GameEvent.HasWonEvent -> {
-            updateTeamScores(value.finalScore)
+            GameViewModel.updateSetLogBook(value.finalScore)
         }
 
         is GameEvent.ResetSetEvent -> {
             GameViewModel.resetSetLog()
         }
-    }
-
-    private fun updateTeamScores(entry: ScoreEntry) {
-        GameViewModel.updateScoreLog(entry)
     }
 }

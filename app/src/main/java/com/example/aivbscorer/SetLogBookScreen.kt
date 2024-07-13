@@ -9,15 +9,15 @@ import androidx.navigation.NavController
 import com.example.aivbscorer.components.ScoreItem
 
 @Composable
-fun ScoreLogScreen(
+fun SetLogBookScreen(
     vm: GameViewModel,
     navController: NavController,
 ) {
     // Assuming GameViewModel is accessible here, either passed as a parameter or obtained via viewModel()
-    val scoreLog by vm.scoreLog.collectAsState()
+    val setLogBook by vm.setLog.collectAsState()
 
     LazyColumn {
-        items(scoreLog) { scoreEntry ->
+        items(setLogBook) { scoreEntry ->
             ScoreItem(scoreEntry)
         }
     }

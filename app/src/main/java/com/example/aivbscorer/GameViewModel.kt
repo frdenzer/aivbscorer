@@ -14,8 +14,8 @@ object GameViewModel : ViewModel() {
     private val _gameEvents = MutableSharedFlow<GameEvent>()
     val gameEvents = _gameEvents.asSharedFlow()
 
-    private val _scoreLog = MutableStateFlow<List<ScoreEntry>>(emptyList())
-    val scoreLog = _scoreLog.asStateFlow()
+    private val _setLogBook = MutableStateFlow<List<ScoreEntry>>(emptyList())
+    val setLog = _setLogBook.asStateFlow()
 
     fun onSetWon(finalScore: ScoreEntry) {
         viewModelScope.launch {
@@ -31,17 +31,17 @@ object GameViewModel : ViewModel() {
 
     fun resetSetLog() {
         viewModelScope.launch {
-            _scoreLog.value = emptyList()
+            _setLogBook.value = emptyList()
         }
     }
 
-    // MatchScoreLog instance needs to get informed that a result needs to be stored
-    fun updateScoreLog(entry: ScoreEntry) {
+    // MatchSetLogBook instance needs to get informed that a result needs to be stored
+    fun updateSetLogBook(entry: ScoreEntry) {
         viewModelScope.launch {
-            val updatedLog = _scoreLog.value.toMutableList().apply {
+            val updatedLog = _setLogBook.value.toMutableList().apply {
                 add(0, entry) // top of list for better displaying
             }
-            _scoreLog.value = updatedLog
+            _setLogBook.value = updatedLog
         }
     }
 }
