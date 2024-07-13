@@ -1,5 +1,4 @@
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -29,7 +28,7 @@ fun MatchScoreLogPreview() {
             updateScoreLog(ScoreEntry(Color.Red, 0, Color.Blue, 25))
             updateScoreLog(ScoreEntry(Color.Red, 24, Color.Blue, 26))
         },
-        modifier = Modifier.width(WIDTH),
+        modifier = Modifier.width(WIDTH + 1.dp), // +1 dp to avoid linebreak in preview. Real app is fine
     )
 }
 
@@ -40,17 +39,15 @@ fun MatchScoreLog(
 ) {
     val scoreLog by gameViewModel.scoreLog.collectAsState()
 
-    Column {
-        LazyColumn(modifier = modifier) {
-            // take three, if at most three items are available
-            items(scoreLog.take(TWO)) { scoreEntry ->
-                ScoreItem(scoreEntry)
-            }
-            if (scoreLog.size > TWO) {
-                item {
-                    Button(onClick = { /*TODO*/ }) {
-                        Text(text = "Show all")
-                    }
+    LazyColumn(modifier = modifier) {
+        // take three, if at most three items are available
+        items(scoreLog.take(TWO)) { scoreEntry ->
+            ScoreItem(scoreEntry)
+        }
+        if (scoreLog.size > TWO) {
+            item {
+                Button(onClick = { /* navigateTo("scoreLog")*/ }) {
+                    Text(text = "Show all")
                 }
             }
         }
