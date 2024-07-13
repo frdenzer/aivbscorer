@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.aivbscorer.GameViewModel
+import com.example.aivbscorer.Routes
 import com.example.aivbscorer.data.Constants.TWO
 import com.example.aivbscorer.data.ScoreEntry
 import com.example.aivbscorer.theme.name
@@ -50,7 +51,7 @@ fun WideButConciseLog() {
             ScoreItem(scoreEntry)
         }
         item {
-            Button(onClick = { navController.navigate("SetLogBookScreen") }) {
+            Button(onClick = { navController.navigate(Routes.SetLogBookScreen.name) }) {
                 Text(text = "Show all")
             }
         }

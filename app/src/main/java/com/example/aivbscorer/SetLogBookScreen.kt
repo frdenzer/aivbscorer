@@ -1,6 +1,5 @@
 package com.example.aivbscorer
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
@@ -17,7 +16,6 @@ import com.example.aivbscorer.data.ScoreEntry
 import com.example.aivbscorer.theme.VerticalSpacing
 
 
-@ExperimentalFoundationApi
 @Preview(showBackground = true)
 @Composable
 fun PreviewSetLogBookScreen() {
@@ -29,7 +27,6 @@ fun PreviewSetLogBookScreen() {
     SetLogBookScreen()
 }
 
-@ExperimentalFoundationApi
 @Composable
 fun SetLogBookScreen() {
     val navController: NavController = rememberNavController()
@@ -37,10 +34,10 @@ fun SetLogBookScreen() {
     val setLogBook by GameViewModel.setLog.collectAsState()
 
     LazyColumn {
-        stickyHeader {
+        item {
             VerticalSpacing()
             // Add a button to navigate back to the ScoringScreen
-            Button(onClick = { navController.navigate("ScoringScreen") }) {
+            Button(onClick = { navController.navigate(Routes.ScoringScreen.name) }) {
                 Text(text = "Back")
             }
         }

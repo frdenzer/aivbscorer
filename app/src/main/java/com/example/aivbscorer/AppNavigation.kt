@@ -10,9 +10,14 @@ import com.example.aivbscorer.theme.VolleyballScorerTheme
 fun AppNavigation() {
     val navController = rememberNavController()
     VolleyballScorerTheme {
-        NavHost(navController = navController, startDestination = "ScoringScreen") {
-            composable("ScoringScreen") { ScoringScreen() }
-            composable("SetLogBookScreen") { SetLogBookScreen() }
+        NavHost(navController = navController, startDestination = Routes.ScoringScreen.name) {
+            composable(Routes.ScoringScreen.name) { ScoringScreen() }
+            composable(Routes.SetLogBookScreen.name) { SetLogBookScreen() }
         }
     }
+}
+
+enum class Routes {
+    ScoringScreen,
+    SetLogBookScreen
 }
