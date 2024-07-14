@@ -4,5 +4,4 @@ import com.example.aivbscorer.data.ScoreEntry
 
 sealed class GameEvent {
     data class WonGame(val finalScore: ScoreEntry) : GameEvent()
-    data object ResetLog : GameEvent()
 }
