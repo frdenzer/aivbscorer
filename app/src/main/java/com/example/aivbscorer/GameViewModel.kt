@@ -30,6 +30,9 @@ object GameViewModel : ViewModel() {
     private val _logbook = MutableStateFlow<List<ScoreEntry>>(emptyList())
     val hasLogEntries: Boolean
         get() = _logbook.value.isNotEmpty()
+    fun clearLog() {
+        _logbook.value = emptyList()
+    }
 
     private fun onSetWon(finalScore: ScoreEntry) {
         viewModelScope.launch {
@@ -46,8 +49,6 @@ object GameViewModel : ViewModel() {
             _logbook.value = updatedLog
         }
     }
-
-    val resetApp = ::resetSetLog
 
     fun resetSetLog() {
         _logbook.value = emptyList()
