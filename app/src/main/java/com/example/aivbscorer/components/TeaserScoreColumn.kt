@@ -51,7 +51,7 @@ fun TeamScoreColumn(
             Button(onClick = referee.score(team)) {
                 Text("+")
             }
-            1.Times { HorizontalSpacing() }
+            HorizontalSpacing()
             Button(
                 onClick = referee.decrementScore(team),
                 enabled = team.teamScore > 0,
@@ -71,13 +71,6 @@ fun TeamScoreColumn(
                 Text("close set as win")
             }
         }
-    }
-}
-
-@Composable
-inline fun <T> Int.Times(content: @Composable () -> T) {
-    for (i in 0 until this) {
-        content()
     }
 }
 
