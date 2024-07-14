@@ -17,7 +17,7 @@ object GameViewModel : ViewModel() {
     private lateinit var teamB: Team
     lateinit var referee: Referee
 
-    fun initialize (a: Team, b:Team){
+    fun initialize(a: Team, b: Team) {
         teamA = a
         teamB = b
         Referee.initialize(a, b, this::onSetWon)
@@ -37,12 +37,6 @@ object GameViewModel : ViewModel() {
         }
     }
 
-    fun resetSetLog() {
-        _logBook.value = emptyList()
-        teamA.teamSetsWon = 0
-        teamB.teamSetsWon = 0
-    }
-
     // MatchSetLogBook instance needs to get informed that a result needs to be stored
     fun updateSetLogBook(entry: ScoreEntry) {
         viewModelScope.launch {
@@ -53,11 +47,18 @@ object GameViewModel : ViewModel() {
         }
     }
 
-    fun resetApp() {
-        teamA.teamScore = 0
-        teamB.teamScore = 0
-        resetSetLog()
+    fun resetSetLog() {
+        _logBook.value = emptyList()
+        teamA.teamSetsWon = 0
+        teamB.teamSetsWon = 0
     }
+
+//    fun resetApp() {
+//        teamA.teamScore = 0
+//        teamB.teamScore = 0
+//
+//        resetSetLog()
+//    }
 
     fun logBookOfSets(
         abbreviate: Boolean = false,
