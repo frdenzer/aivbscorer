@@ -44,10 +44,6 @@ fun SetLogBookScreen(navController: NavController, modifier: Modifier = Modifier
             Row(
                 modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Button(onClick = { navController.navigate(Routes.ScoringScreen.name) }) {
-                    Text(text = "\uD83D\uDD22 \uD83C\uDFD0 ${Routes.ScoringScreen.deutsch}")
-                }
-                // arrow button to navigate back to ScoringScreen
                 Button(onClick = { navController.popBackStack() }) {
                     Text("Back")
                 }
@@ -64,8 +60,10 @@ fun SetLogBookScreen(navController: NavController, modifier: Modifier = Modifier
                 }
             }
         }
-        GameViewModel.mapper { index, scoreEntry ->
-            item { ScoreItem(index, scoreEntry) }
+        if (GameViewModel.hasLogEntries) {
+            GameViewModel.logBookOfSets { index, scoreEntry ->
+                item { ScoreItem(index, scoreEntry) }
+            }
         }
     }
 }

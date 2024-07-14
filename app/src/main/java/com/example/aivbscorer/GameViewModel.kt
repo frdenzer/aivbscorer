@@ -19,6 +19,8 @@ object GameViewModel : ViewModel() {
     val gameEvents = _gameEvents.asSharedFlow()
 
     private val _logBook = MutableStateFlow<List<ScoreEntry>>(emptyList())
+    val hasLogEntries: Boolean
+        get() = _logBook.value.isNotEmpty()
 
     fun onSetWon(finalScore: ScoreEntry) {
         viewModelScope.launch {
@@ -48,7 +50,7 @@ object GameViewModel : ViewModel() {
         resetSetLog()
     }
 
-    fun mapper(
+    fun logBookOfSets(
         abbreviate: Boolean = false,
         addItem: (Int, ScoreEntry) -> Unit,
     ) = looper(abbreviate).forEach { (index, entry) ->

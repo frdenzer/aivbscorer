@@ -6,6 +6,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -14,6 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.Routes
 import com.example.aivbscorer.data.ScoreEntry
+import com.example.aivbscorer.eventing.GameEvent
 
 @Preview(showBackground = true)
 @Composable
@@ -34,10 +37,13 @@ fun MatchSetLogBookPreview() {
 @Composable
 fun WideButConciseLog(navController: NavController) {
     val modifier: Modifier = Modifier.fillMaxWidth()
+    val gameEvent by GameViewModel.gameEvents.collectAsState(initial = null)
 
     LazyColumn(modifier = modifier) {
-        GameViewModel.mapper(true) { index, scoreEntry ->
-            item { ScoreItem(index, scoreEntry) }
+        if (gameEvent is GameEvent.HasWonEvent || GameViewModel.hasLogEntries) {
+            GameViewModel.logBookOfSets(true) { index, scoreEntry ->
+                item { ScoreItem(index, scoreEntry) }
+            }
         }
         item {
             Button(onClick = { navController.navigate(Routes.SetLogBookScreen.name) }) {
