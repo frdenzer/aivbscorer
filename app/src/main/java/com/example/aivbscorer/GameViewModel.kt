@@ -2,7 +2,7 @@ package com.example.aivbscorer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.aivbscorer.data.Constants.ONE
+import com.example.aivbscorer.data.Constants.TWO
 import com.example.aivbscorer.data.Referee
 import com.example.aivbscorer.data.ScoreEntry
 import com.example.aivbscorer.data.Team
@@ -73,7 +73,7 @@ object GameViewModel : ViewModel() {
 
         // In abbreviated log, only show the last two entries. This is not the default.
         // get only [maxIndex, maxIndex - 1], i.e. the highest two entries
-        val earlyEnd = if (abbreviate) maxIndex - ONE else 0
+        val earlyEnd = if (abbreviate) maxIndex - TWO else 0
         val safeEnd = maxOf(earlyEnd, 0) // Prevents negative index
 
         return (maxIndex downTo safeEnd).map { index ->
