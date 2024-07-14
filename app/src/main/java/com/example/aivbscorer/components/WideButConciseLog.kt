@@ -46,7 +46,7 @@ fun WideButConciseLog(navController: NavController) {
             }
         }
         item {
-            Button(onClick = { navController.navigate(Routes.SetLogBookScreen.name) }) {
+            Button(onClick = { navController.navigate(Routes.Logbuch.name) }) {
                 Text(text = "Show all")
             }
         }

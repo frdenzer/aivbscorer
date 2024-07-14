@@ -44,6 +44,10 @@ fun LogBookScreen(navController: NavController, modifier: Modifier = Modifier) {
             Row(
                 modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween
             ) {
+                Button(onClick = { navController.navigate(Routes.LaufendesSpiel.name) }) {
+                    Text(Routes.LaufendesSpiel.deutsch)
+                }
+
                 Button(onClick = { navController.popBackStack() }) {
                     Text("Back")
                 }
@@ -60,10 +64,10 @@ fun LogBookScreen(navController: NavController, modifier: Modifier = Modifier) {
                 }
             }
         }
-        if (GameViewModel.hasLogEntries) {
-            GameViewModel.logBookOfSets { index, scoreEntry ->
-                item { ScoreItem(index, scoreEntry) }
-            }
+//        if (GameViewModel.hasLogEntries) {
+        GameViewModel.logBookOfSets { index, scoreEntry ->
+            item { ScoreItem(index, scoreEntry) }
         }
+//        }
     }
 }

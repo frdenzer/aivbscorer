@@ -31,7 +31,7 @@ object GameViewModel : ViewModel() {
     val hasLogEntries: Boolean
         get() = _logBook.value.isNotEmpty()
 
-    fun onSetWon(finalScore: ScoreEntry) {
+    private fun onSetWon(finalScore: ScoreEntry) {
         viewModelScope.launch {
             _gameEvents.emit(GameEvent.WinEvent(finalScore))
         }
