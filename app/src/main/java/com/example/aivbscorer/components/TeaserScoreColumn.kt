@@ -16,6 +16,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.aivbscorer.GameViewModel
 import com.example.aivbscorer.data.Team
 import com.example.aivbscorer.theme.HorizontalSpacing
 import com.example.aivbscorer.theme.VerticalSpacing
@@ -24,12 +25,10 @@ import com.example.aivbscorer.theme.VerticalSpacing
 @Composable
 fun TeamScoreColumnPreview() {
     TeamScoreColumn(
-        team = Team(Color.Red, null, sendHasWonEvent = {}, //sendResetLogEvent = {}
-            ),
+        team = Team(Color.Red),
         modifier = Modifier
             .fillMaxHeight()
             .fillMaxWidth(),
-        // .background(Color.hsl(0, 1f, 0.5f)), // Red
     )
 }
 
@@ -42,18 +41,19 @@ fun TeamScoreColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center // This will center the Row vertically
     ) {
+        val referee = GameViewModel.referee
         val textColor = Color.White
         ScalingText(
             text = team.teamScore.toString(),
             color = textColor,
         )
         Row {
-            Button(onClick = team::score) {
+            Button(onClick = referee.score(team)) {
                 Text("+")
             }
             1.Times { HorizontalSpacing() }
             Button(
-                onClick = team::decrementScore,
+                onClick = referee.decrementScore(team),
                 enabled = team.teamScore > 0,
 
                 ) {
@@ -65,8 +65,9 @@ fun TeamScoreColumn(
             text = "Sets: ${team.teamSetsWon}",
             style = MaterialTheme.typography.headlineSmall.copy(color = textColor)
         )
+        // useful for testing, do not ship in production: the following button stores any result
         Row {
-            Button(enabled = team.teamScore > 0, onClick = team::closeSetSavingScore) {
+            Button(enabled = team.teamScore > 0, onClick = referee.closeSetSavingScore(team)) {
                 Text("close set as win")
             }
         }

@@ -28,11 +28,10 @@ fun ScoringScreenPreview() {
 
 @Composable
 fun ScoringScreen(navController: NavController) {
-    val teamA = remember { Team(Color.Red, null, GameViewModel::onSetWon) }
-    val teamB = remember { Team(Color.Blue, teamA, GameViewModel::onSetWon) }
-    teamA.opponent = teamB
-    GameViewModel.teamA = teamA
-    GameViewModel.teamB = teamB
+    val teamA = remember { Team(Color.Red) }
+    val teamB = remember { Team(Color.Blue) }
+
+    GameViewModel.initialize(teamA, teamB)
 
     Column(
         modifier = Modifier

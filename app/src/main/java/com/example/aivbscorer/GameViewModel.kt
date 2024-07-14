@@ -3,6 +3,7 @@ package com.example.aivbscorer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.aivbscorer.data.Constants.ONE
+import com.example.aivbscorer.data.Referee
 import com.example.aivbscorer.data.ScoreEntry
 import com.example.aivbscorer.data.Team
 import com.example.aivbscorer.eventing.GameEvent
@@ -12,8 +13,16 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
 object GameViewModel : ViewModel() {
-    lateinit var teamA: Team
-    lateinit var teamB: Team
+    private lateinit var teamA: Team
+    private lateinit var teamB: Team
+    lateinit var referee: Referee
+
+    fun initialize (a: Team, b:Team){
+        teamA = a
+        teamB = b
+        Referee.initialize(a, b, this::onSetWon)
+        referee = Referee
+    }
 
     private val _gameEvents = MutableSharedFlow<GameEvent>()
     val gameEvents = _gameEvents.asSharedFlow()
