@@ -20,7 +20,7 @@ import com.example.aivbscorer.data.ScoreEntry
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewSetLogBookScreen() {
+fun PreviewLogBookScreen() {
     GameViewModel.apply {
         // index 0, displayIndex 1 -> lowest entry
         updateSetLogBook(ScoreEntry(Color.Red, 25, Color.Blue, 1))
@@ -33,11 +33,11 @@ fun PreviewSetLogBookScreen() {
     }
 
     // At 393.dp point, any further preview width increase ends. WTF google?!
-    SetLogBookScreen(rememberNavController(), modifier = Modifier.width(393.dp))
+    LogBookScreen(rememberNavController(), modifier = Modifier.width(393.dp))
 }
 
 @Composable
-fun SetLogBookScreen(navController: NavController, modifier: Modifier = Modifier) {
+fun LogBookScreen(navController: NavController, modifier: Modifier = Modifier) {
 
     LazyColumn(modifier = modifier) {
         item {
