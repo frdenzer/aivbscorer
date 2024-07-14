@@ -2,7 +2,6 @@ package com.example.aivbscorer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,7 +21,6 @@ fun PreviewScoringScreen() {
 fun ScoringScreen(navController: NavController) {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
             .background(color = Color.Gray),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {

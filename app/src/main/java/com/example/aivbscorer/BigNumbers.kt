@@ -3,6 +3,7 @@ package com.example.aivbscorer
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.mapSaver
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -44,15 +45,23 @@ internal fun BigNumbers() {
 
     GameViewModel.initialize(teamA, teamB)
 
+    val wide = Modifier.fillMaxWidth()
     Row(
+        modifier = wide,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         TeamScoreColumn(
-            teamA, Modifier.background(teamA.colorId)
+            teamA,
+            wide
+                .background(teamA.colorId)
+                .weight(1f)
         )
         TeamScoreColumn(
-            teamB, Modifier.background(teamB.colorId)
+            teamB,
+            wide
+                .background(teamB.colorId)
+                .weight(1f)
         )
     }
 }
