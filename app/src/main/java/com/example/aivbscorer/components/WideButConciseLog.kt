@@ -1,6 +1,5 @@
 package com.example.aivbscorer.components
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -34,8 +33,7 @@ fun MatchSetLogbookPreview() {
 }
 
 @Composable
-fun WideButConciseLog(navController: NavController) {
-    val modifier: Modifier = Modifier.fillMaxWidth()
+fun WideButConciseLog(navController: NavController, modifier: Modifier = Modifier) {
     val gameEvent by GameViewModel.events.collectAsState(initial = null)
 
     LazyColumn(modifier = modifier) {

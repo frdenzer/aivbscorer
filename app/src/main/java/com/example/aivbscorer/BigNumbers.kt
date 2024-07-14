@@ -17,9 +17,14 @@ import com.example.aivbscorer.data.RedTeam
 @Preview(heightDp = 200, widthDp = 400)
 @Preview(heightDp = 400, widthDp = 200)
 @Composable
-internal fun BigNumbers() {
+fun BigNumbersPreview() {
+    BigNumbers(modifier = Modifier.fillMaxWidth())
+}
+
+@Composable
+internal fun BigNumbers(modifier: Modifier) {
     val wide = Modifier.fillMaxWidth()
-    BoxWithConstraints {
+    BoxWithConstraints(modifier = modifier) {
         if (maxWidth > maxHeight) {
             Row(
                 modifier = wide,
@@ -28,13 +33,13 @@ internal fun BigNumbers() {
             ) {
                 TeamScoreColumn(
                     RedTeam,
-                    Modifier
+                    modifier
                         .background(RedTeam.colorId)
                         .weight(1f)
                 )
                 TeamScoreColumn(
                     BlueTeam,
-                    Modifier
+                    modifier
                         .background(BlueTeam.colorId)
                         .weight(1f)
                 )
