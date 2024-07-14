@@ -40,7 +40,7 @@ fun WideButConciseLog(navController: NavController) {
     val gameEvent by GameViewModel.gameEvents.collectAsState(initial = null)
 
     LazyColumn(modifier = modifier) {
-        if (gameEvent is GameEvent.HasWonEvent || GameViewModel.hasLogEntries) {
+        if (gameEvent is GameEvent.WinEvent || GameViewModel.hasLogEntries) {
             GameViewModel.logBookOfSets(true) { index, scoreEntry ->
                 item { ScoreItem(index, scoreEntry) }
             }

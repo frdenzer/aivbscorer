@@ -24,7 +24,7 @@ object GameViewModel : ViewModel() {
 
     fun onSetWon(finalScore: ScoreEntry) {
         viewModelScope.launch {
-            _gameEvents.emit(GameEvent.HasWonEvent(finalScore))
+            _gameEvents.emit(GameEvent.WinEvent(finalScore))
         }
     }
 

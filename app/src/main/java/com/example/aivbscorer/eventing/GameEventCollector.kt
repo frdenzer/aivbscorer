@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.FlowCollector
 
 class GameEventCollector : FlowCollector<GameEvent> {
     override suspend fun emit(value: GameEvent) = when (value) {
-        is GameEvent.HasWonEvent -> {
+        is GameEvent.WinEvent -> {
             GameViewModel.updateSetLogBook(value.finalScore)
         }
     }
