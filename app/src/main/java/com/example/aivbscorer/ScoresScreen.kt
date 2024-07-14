@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -30,11 +28,11 @@ fun ScoringScreenPreview() {
 
 @Composable
 fun ScoringScreen(navController: NavController) {
-    val teamA =
-        remember { Team(Color.Red, null, GameViewModel::onSetWon, GameViewModel::onResetSetLog) }
-    val teamB =
-        remember { Team(Color.Blue, teamA, GameViewModel::onSetWon, GameViewModel::onResetSetLog) }
+    val teamA = remember { Team(Color.Red, null, GameViewModel::onSetWon) }
+    val teamB = remember { Team(Color.Blue, teamA, GameViewModel::onSetWon) }
     teamA.opponent = teamB
+    GameViewModel.teamA = teamA
+    GameViewModel.teamB = teamB
 
     Column(
         modifier = Modifier
@@ -60,12 +58,7 @@ fun ScoringScreen(navController: NavController) {
                 teamB, modifier.background(teamB.colorId)
             )
         }
-        if (teamA.teamSetsWon + teamB.teamSetsWon == 0) return
-        Button(onClick = {
-            teamA.resetAllCountersForBothTeams() // reset both Teams scores and sets
-        }) {
-            Text("Reset score log") // TODO: 1. move onto new fullscreen log screen. 2. make more secure to delete.
-        }
+
         WideButConciseLog(navController)
     }
 }

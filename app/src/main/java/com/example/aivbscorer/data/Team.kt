@@ -9,25 +9,26 @@ data class Team(
     var colorId: Color,
     var opponent: Team?,
     private val sendHasWonEvent: (ScoreEntry) -> Unit,
-    private val sendResetLogEvent: () -> Unit,
 ) {
     private var _teamScore by mutableIntStateOf(0)
-    val teamScore: Int
+    var teamScore: Int
         get() = _teamScore
+        set(value) = run { _teamScore = value }
 
     private var _teamSetsWon by mutableIntStateOf(0)
-    val teamSetsWon: Int
+    var teamSetsWon: Int
         get() = _teamSetsWon
+        set(value) = run { _teamSetsWon = value }
 
     fun closeSetSavingScore() {
         opponent?.let {
             // if (teamScore + it.teamScore < 1) return // checked in UI
             sendHasWonEvent(ScoreEntry(colorId, teamScore, it.colorId, it.teamScore))
-            it.resetSet()
+            it.teamScore = 0
         } ?: throw IllegalStateException("Opponent is not set")
 
         _teamSetsWon += 1
-        resetSet()
+        teamScore = 0
     }
 
     fun score() {
@@ -47,19 +48,5 @@ data class Team(
             _teamScore -= 1
             it.checkWinConditions()
         } ?: throw IllegalStateException("Opponent is not set")
-    }
-
-    private fun resetSet() {
-        _teamScore = 0
-    }
-
-    fun resetAllCountersForBothTeams() {
-        opponent?.apply {
-            resetSet()
-            _teamSetsWon = 0
-        } ?: throw IllegalStateException("Opponent is not set")
-        _teamScore = 0
-        _teamSetsWon = 0
-        sendResetLogEvent()
     }
 }

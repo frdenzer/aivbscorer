@@ -8,9 +8,5 @@ class GameEventCollector : FlowCollector<GameEvent> {
         is GameEvent.HasWonEvent -> {
             GameViewModel.updateSetLogBook(value.finalScore)
         }
-
-        is GameEvent.ResetSetEvent -> {
-            GameViewModel.resetSetLog()
-        }
     }
 }

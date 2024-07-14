@@ -24,7 +24,8 @@ import com.example.aivbscorer.theme.VerticalSpacing
 @Composable
 fun TeamScoreColumnPreview() {
     TeamScoreColumn(
-        team = Team(Color.Red, null, sendHasWonEvent = {}, sendResetLogEvent = {}),
+        team = Team(Color.Red, null, sendHasWonEvent = {}, //sendResetLogEvent = {}
+            ),
         modifier = Modifier
             .fillMaxHeight()
             .fillMaxWidth(),

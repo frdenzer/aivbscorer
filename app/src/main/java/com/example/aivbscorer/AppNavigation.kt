@@ -17,7 +17,7 @@ fun AppNavigation() {
     }
 }
 
-enum class Routes {
-    ScoringScreen,
-    SetLogBookScreen
+enum class Routes(val deutsch: String) {
+    ScoringScreen("Aktuelles Spiel"),
+    SetLogBookScreen("Abgeschlossene Sätze")
 }
