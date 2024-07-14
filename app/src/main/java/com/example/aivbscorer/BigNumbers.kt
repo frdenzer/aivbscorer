@@ -2,6 +2,8 @@ package com.example.aivbscorer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
@@ -12,22 +14,50 @@ import com.example.aivbscorer.components.TeamScoreColumn
 import com.example.aivbscorer.data.BlueTeam
 import com.example.aivbscorer.data.RedTeam
 
-@Preview
+@Preview(heightDp = 200, widthDp = 400)
+@Preview(heightDp = 400, widthDp = 200)
 @Composable
 internal fun BigNumbers() {
     val wide = Modifier.fillMaxWidth()
-    Row(
-        modifier = wide,
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
-    ) {
-        TeamScoreColumn(
-            RedTeam,
-            wide.background(RedTeam.colorId).weight(1f)
-        )
-        TeamScoreColumn(
-            BlueTeam,
-            wide.background(BlueTeam.colorId).weight(1f)
-        )
+    BoxWithConstraints {
+        if (maxWidth > maxHeight) {
+            Row(
+                modifier = wide,
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
+                TeamScoreColumn(
+                    RedTeam,
+                    Modifier
+                        .background(RedTeam.colorId)
+                        .weight(1f)
+                )
+                TeamScoreColumn(
+                    BlueTeam,
+                    Modifier
+                        .background(BlueTeam.colorId)
+                        .weight(1f)
+                )
+            }
+            return@BoxWithConstraints
+        }
+        Column(
+            modifier = wide,
+            verticalArrangement = Arrangement.SpaceBetween,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            TeamScoreColumn(
+                RedTeam,
+                wide
+                    .background(RedTeam.colorId)
+                    .weight(1f)
+            )
+            TeamScoreColumn(
+                BlueTeam,
+                wide
+                    .background(BlueTeam.colorId)
+                    .weight(1f)
+            )
+        }
     }
 }

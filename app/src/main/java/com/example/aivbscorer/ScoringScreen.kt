@@ -8,7 +8,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.aivbscorer.components.WideButConciseLog
 
-@Preview
+@Preview(heightDp = 250, widthDp = 450)
+@Preview(heightDp = 450, widthDp = 250)
 @Composable
 fun PreviewScoringScreen() {
     ScoringScreen(navController = rememberNavController())
