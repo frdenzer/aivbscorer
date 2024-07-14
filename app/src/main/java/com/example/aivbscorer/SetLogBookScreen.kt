@@ -1,11 +1,12 @@
 package com.example.aivbscorer
 
+import ScoreItem
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,7 +18,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.aivbscorer.components.ScoreItem
 import com.example.aivbscorer.data.ScoreEntry
 
 
@@ -50,7 +50,7 @@ fun SetLogBookScreen(navController: NavController, modifier: Modifier = Modifier
                     Text("Back")
                 }
                 Button(onClick = {
-                    GameViewModel.resetSetLog() // reset both Teams scores and sets
+                    GameViewModel.resetSetLog()
                 }) {
                     Text("Reset score log")
                 }
@@ -62,8 +62,8 @@ fun SetLogBookScreen(navController: NavController, modifier: Modifier = Modifier
                 }
             }
         }
-        items(setLogBook) { scoreEntry ->
-            ScoreItem(scoreEntry)
+        itemsIndexed(setLogBook) { index, scoreEntry ->
+            ScoreItem(index, scoreEntry)
         }
     }
 }
