@@ -20,24 +20,24 @@ import com.example.aivbscorer.data.ScoreEntry
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewLogBookScreen() {
+fun PreviewLogbookScreen() {
     GameViewModel.apply {
         // index 0, displayIndex 1 -> lowest entry
-        updateSetLogBook(ScoreEntry(Color.Red, 25, Color.Blue, 1))
+        updateSetLogbook(ScoreEntry(Color.Red, 25, Color.Blue, 1))
 
         // index 1, displayIndex 2  -> middle entry
-        updateSetLogBook(ScoreEntry(Color.Red, 0, Color.Blue, 25))
+        updateSetLogbook(ScoreEntry(Color.Red, 0, Color.Blue, 25))
 
         // index 2, displayIndex 3 -> top entry
-        updateSetLogBook(ScoreEntry(Color.Red, 24, Color.Blue, 26))
+        updateSetLogbook(ScoreEntry(Color.Red, 24, Color.Blue, 26))
     }
 
     // At 393.dp point, any further preview width increase ends. WTF google?!
-    LogBookScreen(rememberNavController(), modifier = Modifier.width(393.dp))
+    LogbookScreen(rememberNavController(), modifier = Modifier.width(393.dp))
 }
 
 @Composable
-fun LogBookScreen(navController: NavController, modifier: Modifier = Modifier) {
+fun LogbookScreen(navController: NavController, modifier: Modifier = Modifier) {
 
     LazyColumn(modifier = modifier) {
         item {
@@ -52,15 +52,10 @@ fun LogBookScreen(navController: NavController, modifier: Modifier = Modifier) {
                 }) {
                     Text("Reset score log")
                 }
-                Button(onClick = {
-                    GameViewModel.resetApp()
-                }) {
-                    Text("Reset app")
-                }
             }
         }
 //        if (GameViewModel.hasLogEntries) {
-        GameViewModel.logBookOfSets { index, scoreEntry ->
+        GameViewModel.logbookOfSets { index, scoreEntry ->
             item { ScoreItem(index, scoreEntry) }
         }
 //        }

@@ -19,16 +19,16 @@ import com.example.aivbscorer.eventing.GameEvent
 
 @Preview(showBackground = true)
 @Composable
-fun MatchSetLogBookPreview() {
+fun MatchSetLogbookPreview() {
     GameViewModel.apply {
         // index 0, displayIndex 1 -> hidden in abbreviated log
-        updateSetLogBook(ScoreEntry(Color.Red, 25, Color.Blue, 1))
+        updateSetLogbook(ScoreEntry(Color.Red, 25, Color.Blue, 1))
 
         // index 1, displayIndex 2  -> middle entry
-        updateSetLogBook(ScoreEntry(Color.Red, 0, Color.Blue, 25))
+        updateSetLogbook(ScoreEntry(Color.Red, 0, Color.Blue, 25))
 
         // index 2, displayIndex 3 -> top entry
-        updateSetLogBook(ScoreEntry(Color.Red, 24, Color.Blue, 26))
+        updateSetLogbook(ScoreEntry(Color.Red, 24, Color.Blue, 26))
     }
     WideButConciseLog(rememberNavController())
 }
@@ -36,11 +36,11 @@ fun MatchSetLogBookPreview() {
 @Composable
 fun WideButConciseLog(navController: NavController) {
     val modifier: Modifier = Modifier.fillMaxWidth()
-    val gameEvent by GameViewModel.gameEvents.collectAsState(initial = null)
+    val gameEvent by GameViewModel.events.collectAsState(initial = null)
 
     LazyColumn(modifier = modifier) {
-        if (gameEvent is GameEvent.WinEvent || GameViewModel.hasLogEntries) {
-            GameViewModel.logBookOfSets(true) { index, scoreEntry ->
+        if (gameEvent is GameEvent.WonGame || GameViewModel.hasLogEntries) {
+            GameViewModel.logbookOfSets(true) { index, scoreEntry ->
                 item { ScoreItem(index, scoreEntry) }
             }
         }

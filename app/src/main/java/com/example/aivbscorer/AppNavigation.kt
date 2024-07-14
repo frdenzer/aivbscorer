@@ -12,7 +12,7 @@ fun AppNavigation() {
     VolleyballScorerTheme {
         NavHost(navController = navController, startDestination = Routes.LaufendesSpiel.name) {
             composable(Routes.LaufendesSpiel.name) { ScoringScreen(navController) }
-            composable(Routes.Logbuch.name) { LogBookScreen(navController) }
+            composable(Routes.Logbuch.name) { LogbookScreen(navController) }
         }
     }
 }

@@ -42,13 +42,13 @@ internal fun BigNumbers() {
     }
 }
 
-private fun createTeamSaver(): Saver<Team, *> = mapSaver(save = { team ->
+private fun createTeamSaver(): Saver<Team, *> = mapSaver(save = {
     mapOf(
-        "color" to team.colorId.value.toString(), // Convert ULong to String
-        "score" to team.teamScore, "setsWon" to team.teamSetsWon
+        "color" to it.colorId.value.toString(), // Convert ULong to String
+        "score" to it.teamScore, "setsWon" to it.teamSetsWon
     )
 }, restore = {
     Team(
-        Color(it["color"]!!.toString().toULong()), it["score"] as Int, it["setsWon"] as Int
+        Color(it["color"].toString().toULong()), it["score"] as Int, it["setsWon"] as Int
     )
 })

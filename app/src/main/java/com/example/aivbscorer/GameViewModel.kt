@@ -24,43 +24,39 @@ object GameViewModel : ViewModel() {
         referee = Referee
     }
 
-    private val _gameEvents = MutableSharedFlow<GameEvent>()
-    val gameEvents = _gameEvents.asSharedFlow()
+    private val _events = MutableSharedFlow<GameEvent>()
+    val events = _events.asSharedFlow()
 
-    private val _logBook = MutableStateFlow<List<ScoreEntry>>(emptyList())
+    private val _logbook = MutableStateFlow<List<ScoreEntry>>(emptyList())
     val hasLogEntries: Boolean
-        get() = _logBook.value.isNotEmpty()
+        get() = _logbook.value.isNotEmpty()
 
     private fun onSetWon(finalScore: ScoreEntry) {
         viewModelScope.launch {
-            _gameEvents.emit(GameEvent.WinEvent(finalScore))
+            _events.emit(GameEvent.WonGame(finalScore))
         }
     }
 
-    // MatchSetLogBook instance needs to get informed that a result needs to be stored
-    fun updateSetLogBook(entry: ScoreEntry) {
+    // MatchSetLogbook instance needs to get informed that a result needs to be stored
+    fun updateSetLogbook(entry: ScoreEntry) {
         viewModelScope.launch {
-            val updatedLog = _logBook.value.toMutableList().apply {
+            val updatedLog = _logbook.value.toMutableList().apply {
                 add(entry) // top of list for better displaying
             }
-            _logBook.value = updatedLog
+            _logbook.value = updatedLog
         }
     }
 
+    val resetApp = ::resetSetLog
+
     fun resetSetLog() {
-        _logBook.value = emptyList()
-        teamA.teamSetsWon = 0
-        teamB.teamSetsWon = 0
+        _logbook.value = emptyList()
+        viewModelScope.launch {
+            _events.emit(GameEvent.ResetLog)
+        }
     }
 
-//    fun resetApp() {
-//        teamA.teamScore = 0
-//        teamB.teamScore = 0
-//
-//        resetSetLog()
-//    }
-
-    fun logBookOfSets(
+    fun logbookOfSets(
         abbreviate: Boolean = false,
         addItem: (Int, ScoreEntry) -> Unit,
     ) = looper(abbreviate).forEach { (index, entry) ->
@@ -70,7 +66,7 @@ object GameViewModel : ViewModel() {
     private fun looper(
         abbreviate: Boolean = false,
     ): List<Pair<Int, ScoreEntry>> {
-        val maxIndex = _logBook.value.size - 1
+        val maxIndex = _logbook.value.size - 1
 
         // In abbreviated log, only show the last two entries. This is not the default.
         // get only [maxIndex, maxIndex - 1], i.e. the highest two entries
@@ -78,7 +74,7 @@ object GameViewModel : ViewModel() {
         val safeEnd = maxOf(earlyEnd, 0) // Prevents negative index
 
         return (maxIndex downTo safeEnd).map { index ->
-            index + 1 to _logBook.value[index]
+            index + 1 to _logbook.value[index]
         }
     }
 }
