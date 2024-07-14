@@ -1,4 +1,3 @@
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,7 +15,7 @@ import com.example.aivbscorer.theme.name
 @Preview(showBackground = true)
 @Composable
 fun ScoreItemPreview() {
-        ScoreItem(0, ScoreEntry(Color.Red, 25, Color.Blue, 1))
+    ScoreItem(0, ScoreEntry(Color.Red, 25, Color.Blue, 1))
 }
 
 @Composable
@@ -24,11 +23,10 @@ fun ScoreItem(index: Int, scoreEntry: ScoreEntry) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(2.dp),
-        horizontalArrangement = Arrangement.Start
+            .padding(2.dp), horizontalArrangement = Arrangement.Start
     ) {
         // index
-        Text("${index+1}.")
+        Text("${index}.")
         HorizontalSpacing()
         Text("${scoreEntry.teamAColor.name}: ${scoreEntry.teamAScore}")
         HorizontalSpacing()

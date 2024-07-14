@@ -2,6 +2,7 @@ package com.example.aivbscorer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.aivbscorer.data.Constants.ONE
 import com.example.aivbscorer.data.ScoreEntry
 import com.example.aivbscorer.data.Team
 import com.example.aivbscorer.eventing.GameEvent
@@ -18,8 +19,8 @@ object GameViewModel : ViewModel() {
     private val _gameEvents = MutableSharedFlow<GameEvent>()
     val gameEvents = _gameEvents.asSharedFlow()
 
-    private val _setLogBook = MutableStateFlow<List<ScoreEntry>>(emptyList())
-    val setLog = _setLogBook.asStateFlow()
+    private val _logBook = MutableStateFlow<List<ScoreEntry>>(emptyList())
+    val getLogBook = _logBook.asStateFlow()
 
     fun onSetWon(finalScore: ScoreEntry) {
         viewModelScope.launch {
@@ -28,18 +29,18 @@ object GameViewModel : ViewModel() {
     }
 
     fun resetSetLog() {
-            _setLogBook.value = emptyList()
-            teamA.teamSetsWon = 0
-            teamB.teamSetsWon = 0
+        _logBook.value = emptyList()
+        teamA.teamSetsWon = 0
+        teamB.teamSetsWon = 0
     }
 
     // MatchSetLogBook instance needs to get informed that a result needs to be stored
     fun updateSetLogBook(entry: ScoreEntry) {
         viewModelScope.launch {
-            val updatedLog = _setLogBook.value.toMutableList().apply {
-                add(0, entry) // top of list for better displaying
+            val updatedLog = _logBook.value.toMutableList().apply {
+                add(entry) // top of list for better displaying
             }
-            _setLogBook.value = updatedLog
+            _logBook.value = updatedLog
         }
     }
 
@@ -47,6 +48,22 @@ object GameViewModel : ViewModel() {
         teamA.teamScore = 0
         teamB.teamScore = 0
         resetSetLog()
+    }
+
+    fun looper(
+        abbreviate: Boolean = false,
+        addItem: (Int, ScoreEntry) -> Unit,
+    ) {
+        val maxIndex = getLogBook.value.size - 1
+
+        // In abbreviated log, only show the last two entries. This is not the default.
+        // get only [maxIndex, maxIndex - 1], i.e. the highest two entries
+        val end = if (abbreviate) maxIndex - ONE else 0
+        val safeEnd = maxOf(end, 0) // Prevents negative index
+
+        for (index in maxIndex downTo safeEnd) {
+            addItem(index + 1, getLogBook.value[index])
+        }
     }
 }
 
