@@ -1,6 +1,5 @@
 package com.example.aivbscorer.components
 
-import ScoreItem
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button

@@ -1,14 +1,14 @@
 package com.example.aivbscorer.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColorScheme(
-    primary = Purple200,
-    primaryContainer = Purple700,
-    secondary = Teal200
+    primary = Purple200, primaryContainer = Purple700, secondary = Teal200
 )
 
 private val LightColorPalette = lightColorScheme(
@@ -25,8 +25,7 @@ private val LightColorPalette = lightColorScheme(
 
 @Composable
 fun VolleyballScorerTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+    darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) {
         DarkColorPalette
@@ -35,9 +34,6 @@ fun VolleyballScorerTheme(
     }
 
     MaterialTheme(
-        colorScheme = colors,
-        typography = Typography,
-        shapes = Shapes,
-        content = content
+        colorScheme = colors, typography = Typography, shapes = Shapes, content = content
     )
 }

@@ -1,6 +1,6 @@
 package com.example.aivbscorer
 
-import ScoreItem
+import com.example.aivbscorer.components.ScoreItem
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
