@@ -16,7 +16,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.aivbscorer.GameViewModel
+import com.example.aivbscorer.data.Referee
 import com.example.aivbscorer.data.Team
 import com.example.aivbscorer.theme.HorizontalSpacing
 import com.example.aivbscorer.theme.VerticalSpacing
@@ -41,19 +41,19 @@ fun TeamScoreColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center // This will center the Row vertically
     ) {
-        val referee = GameViewModel.referee
+
         val textColor = Color.White
         ScalingText(
             text = team.teamScore.toString(),
             color = textColor,
         )
         Row {
-            Button(onClick = referee.score(team)) {
+            Button(onClick = Referee.score(team)) {
                 Text("+")
             }
             HorizontalSpacing()
             Button(
-                onClick = referee.decrementScore(team),
+                onClick = Referee.decrementScore(team),
                 enabled = team.teamScore > 0,
 
                 ) {
@@ -67,7 +67,7 @@ fun TeamScoreColumn(
         )
         // useful for testing, do not ship in production: the following button stores any result
         Row {
-            Button(enabled = team.teamScore > 0, onClick = referee.closeSetSavingScore(team)) {
+            Button(enabled = team.teamScore > 0, onClick = Referee.closeSetSavingScore(team)) {
                 Text("close set as win")
             }
         }

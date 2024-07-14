@@ -2,10 +2,10 @@ package com.example.aivbscorer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.aivbscorer.data.BlueTeam
 import com.example.aivbscorer.data.Constants.TWO
-import com.example.aivbscorer.data.Referee
+import com.example.aivbscorer.data.RedTeam
 import com.example.aivbscorer.data.ScoreEntry
-import com.example.aivbscorer.data.Team
 import com.example.aivbscorer.eventing.GameEvent
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,16 +13,6 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
 object GameViewModel : ViewModel() {
-    private lateinit var teamA: Team
-    private lateinit var teamB: Team
-    lateinit var referee: Referee
-
-    fun initialize(a: Team, b: Team) {
-        teamA = a
-        teamB = b
-        Referee.initialize(a, b, this::onSetWon)
-        referee = Referee
-    }
 
     private val _events = MutableSharedFlow<GameEvent>()
     val events = _events.asSharedFlow()
@@ -34,17 +24,16 @@ object GameViewModel : ViewModel() {
         _logbook.value = emptyList()
     }
 
-    private fun onSetWon(finalScore: ScoreEntry) {
+    fun onSetWon(finalScore: ScoreEntry) {
         viewModelScope.launch {
             _events.emit(GameEvent.WonGame(finalScore))
         }
     }
 
-    // MatchSetLogbook instance needs to get informed that a result needs to be stored
     fun updateSetLogbook(entry: ScoreEntry) {
         viewModelScope.launch {
             val updatedLog = _logbook.value.toMutableList().apply {
-                add(entry) // top of list for better displaying
+                add(entry)
             }
             _logbook.value = updatedLog
         }
@@ -52,6 +41,8 @@ object GameViewModel : ViewModel() {
 
     fun resetSetLog() {
         _logbook.value = emptyList()
+        RedTeam.reset()
+        BlueTeam.reset()
         viewModelScope.launch {
             _events.emit(GameEvent.ResetLog)
         }
