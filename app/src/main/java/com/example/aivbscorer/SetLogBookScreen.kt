@@ -31,7 +31,7 @@ fun PreviewSetLogBookScreen() {
         // index 2, displayIndex 3 -> top entry
         updateSetLogBook(ScoreEntry(Color.Red, 24, Color.Blue, 26))
     }
-    
+
     // At 393.dp point, any further preview width increase ends. WTF google?!
     SetLogBookScreen(rememberNavController(), modifier = Modifier.width(393.dp))
 }
@@ -64,7 +64,7 @@ fun SetLogBookScreen(navController: NavController, modifier: Modifier = Modifier
                 }
             }
         }
-        GameViewModel.looper { index, scoreEntry ->
+        GameViewModel.mapper { index, scoreEntry ->
             item { ScoreItem(index, scoreEntry) }
         }
     }

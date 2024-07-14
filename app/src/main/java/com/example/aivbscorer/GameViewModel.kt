@@ -9,7 +9,6 @@ import com.example.aivbscorer.eventing.GameEvent
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 object GameViewModel : ViewModel() {
@@ -20,7 +19,6 @@ object GameViewModel : ViewModel() {
     val gameEvents = _gameEvents.asSharedFlow()
 
     private val _logBook = MutableStateFlow<List<ScoreEntry>>(emptyList())
-    val getLogBook = _logBook.asStateFlow()
 
     fun onSetWon(finalScore: ScoreEntry) {
         viewModelScope.launch {
@@ -50,19 +48,25 @@ object GameViewModel : ViewModel() {
         resetSetLog()
     }
 
-    fun looper(
+    fun mapper(
         abbreviate: Boolean = false,
         addItem: (Int, ScoreEntry) -> Unit,
-    ) {
-        val maxIndex = getLogBook.value.size - 1
+    ) = looper(abbreviate).forEach { (index, entry) ->
+        addItem(index, entry)
+    }
+
+    private fun looper(
+        abbreviate: Boolean = false,
+    ): List<Pair<Int, ScoreEntry>> {
+        val maxIndex = _logBook.value.size - 1
 
         // In abbreviated log, only show the last two entries. This is not the default.
         // get only [maxIndex, maxIndex - 1], i.e. the highest two entries
-        val end = if (abbreviate) maxIndex - ONE else 0
-        val safeEnd = maxOf(end, 0) // Prevents negative index
+        val earlyEnd = if (abbreviate) maxIndex - ONE else 0
+        val safeEnd = maxOf(earlyEnd, 0) // Prevents negative index
 
-        for (index in maxIndex downTo safeEnd) {
-            addItem(index + 1, getLogBook.value[index])
+        return (maxIndex downTo safeEnd).map { index ->
+            index + 1 to _logBook.value[index]
         }
     }
 }

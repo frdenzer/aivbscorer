@@ -36,7 +36,7 @@ fun WideButConciseLog(navController: NavController) {
     val modifier: Modifier = Modifier.fillMaxWidth()
 
     LazyColumn(modifier = modifier) {
-        GameViewModel.looper(true) { index, scoreEntry ->
+        GameViewModel.mapper(true) { index, scoreEntry ->
             item { ScoreItem(index, scoreEntry) }
         }
         item {
