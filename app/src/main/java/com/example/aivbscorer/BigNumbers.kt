@@ -38,7 +38,7 @@ internal fun BigNumbers(modifier: Modifier) {
 
     val wide = Modifier.fillMaxWidth()
     BoxWithConstraints(modifier = modifier) {
-        if (maxWidth > maxHeight) {
+        if (this.maxWidth > this.maxHeight) {
             Row(
                 modifier = wide,
                 verticalAlignment = Alignment.CenterVertically,
