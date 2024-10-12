@@ -1,9 +1,8 @@
 package com.example.aivbscorer.data
 
-import androidx.compose.ui.unit.dp
-
 object Constants {
-    val WIDTH = 100.dp
+    const val MAX_FONT_SIZE = 150f
+    const val MIN_FONT_SIZE = 12f
     const val TWO = 2
     const val ONE = 1
 }

@@ -16,10 +16,11 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.aivbscorer.data.Constants.MAX_FONT_SIZE
+import com.example.aivbscorer.data.Constants.MIN_FONT_SIZE
 import com.example.aivbscorer.data.Referee
 import com.example.aivbscorer.data.Team
 import com.example.aivbscorer.theme.HorizontalSpacing
-import com.example.aivbscorer.theme.VerticalSpacing
 
 @Preview(showBackground = true, backgroundColor = 0xF00) // Red
 @Composable
@@ -60,17 +61,17 @@ fun TeamScoreColumn(
                 Text("-")
             }
         }
-        VerticalSpacing()
-        Text(
-            text = "Sets: ${team.teamSetsWon}",
-            style = MaterialTheme.typography.headlineSmall.copy(color = textColor)
-        )
+//        VerticalSpacing()
+//        Text(
+//            text = "Sets: ${team.teamSetsWon}",
+//            style = MaterialTheme.typography.headlineSmall.copy(color = textColor)
+//        )
         // useful for testing, do not ship in production: the following button stores any result
-        Row {
-            Button(enabled = team.teamScore > 0, onClick = Referee.closeSetSavingScore(team)) {
-                Text("close set as win")
-            }
-        }
+//        Row {
+//            Button(enabled = team.teamScore > 0, onClick = Referee.closeSetSavingScore(team)) {
+//                Text("close set as win")
+//            }
+//        }
     }
 }
 
@@ -78,7 +79,8 @@ fun TeamScoreColumn(
 fun ScalingText(text: String, color: Color) {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
-    val dynamicFontSize = (screenWidth / (text.length / 3 + 4.5f)).value.coerceAtLeast(12f).sp
+    val dynamicFontSize = (screenWidth / (text.length / 3 + 4.5f)).value
+        .coerceIn(MIN_FONT_SIZE, MAX_FONT_SIZE).sp
 
     Text(
         text = text, style = MaterialTheme.typography.displayLarge.copy(
