@@ -9,11 +9,11 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.aivbscorer"
+        applicationId = "com.example.app"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
-        versionName = "beta"
+        versionName = "1.0"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -28,7 +28,18 @@ android {
                 file("proguard-rules.pro")
             )
         }
+
+        create("staging") {
+            initWith(getByName("release"))
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                file("proguard-rules.pro")
+            )
+            signingConfig = signingConfigs.getByName("debug") // Use debug signing config
+        }
     }
+
     applicationVariants.all {
         val variant = this
         variant.outputs
@@ -37,7 +48,7 @@ android {
                 val originalFileName = output.outputFileName
                 val extension = originalFileName.substringAfterLast(".")
 
-                var outputFileName = "aivbscorer-${defaultConfig.versionName}-${defaultConfig.versionCode}.$extension"
+                val outputFileName = "aivbscorer-${defaultConfig.versionName}-${defaultConfig.versionCode}.$extension"
                 println("OutputFileName: $outputFileName")
                 output.outputFileName = outputFileName
             }
