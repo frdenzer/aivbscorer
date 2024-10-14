@@ -13,7 +13,6 @@ open class Team(
 ) {
     fun reset() {
         teamScore = 0
-        teamSetsWon = 0
     }
 
     private var _teamScore by mutableIntStateOf(0)
@@ -21,13 +20,6 @@ open class Team(
         get() = _teamScore
         set(value) {
             _teamScore = value
-        }
-
-    private var _teamSetsWon by mutableIntStateOf(0)
-    var teamSetsWon: Int
-        get() = _teamSetsWon
-        set(value) {
-            _teamSetsWon = value
         }
 }
 

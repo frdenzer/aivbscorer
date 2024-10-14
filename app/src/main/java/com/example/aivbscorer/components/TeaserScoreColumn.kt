@@ -49,10 +49,6 @@ fun TeamScoreColumn(
             color = textColor,
         )
         Row {
-            Button(onClick = Referee.score(team)) {
-                Text("+")
-            }
-            HorizontalSpacing()
             Button(
                 onClick = Referee.decrementScore(team),
                 enabled = team.teamScore > 0,
@@ -60,18 +56,11 @@ fun TeamScoreColumn(
                 ) {
                 Text("-")
             }
+            HorizontalSpacing()
+            Button(onClick = Referee.score(team)) {
+                Text("+")
+            }
         }
-//        VerticalSpacing()
-//        Text(
-//            text = "Sets: ${team.teamSetsWon}",
-//            style = MaterialTheme.typography.headlineSmall.copy(color = textColor)
-//        )
-        // useful for testing, do not ship in production: the following button stores any result
-//        Row {
-//            Button(enabled = team.teamScore > 0, onClick = Referee.closeSetSavingScore(team)) {
-//                Text("close set as win")
-//            }
-//        }
     }
 }
 
@@ -79,8 +68,9 @@ fun TeamScoreColumn(
 fun ScalingText(text: String, color: Color) {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
-    val dynamicFontSize = (screenWidth / (text.length / 3 + 4.5f)).value
-        .coerceIn(MIN_FONT_SIZE, MAX_FONT_SIZE).sp
+    val dynamicFontSize = (screenWidth / (text.length / 3)).value
+        .coerceIn(MIN_FONT_SIZE, MAX_FONT_SIZE)
+        .sp
 
     Text(
         text = text, style = MaterialTheme.typography.displayLarge.copy(

@@ -8,6 +8,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -16,7 +18,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.aivbscorer.components.ScoreItem
 import com.example.aivbscorer.data.ScoreEntry
-
 
 @Preview(showBackground = true)
 @Composable
@@ -38,6 +39,19 @@ fun PreviewLogbookScreen() {
 
 @Composable
 fun LogbookScreen(navController: NavController, modifier: Modifier = Modifier) {
+    val logbookEntries by GameViewModel.logbook.collectAsState()
+
+    fun looper(
+    ): List<Pair<Int, ScoreEntry>> = (logbookEntries.size - 1 downTo 0).map { index ->
+        index + 1 to logbookEntries[index]
+    }
+
+    fun logbookOfSets(
+        addItem: (Int, ScoreEntry) -> Unit,
+    ) = looper().forEach { (index, entry) ->
+        addItem(index, entry)
+    }
+
 
     LazyColumn(modifier = modifier) {
         item {
@@ -54,10 +68,11 @@ fun LogbookScreen(navController: NavController, modifier: Modifier = Modifier) {
                 }
             }
         }
-//        if (GameViewModel.hasLogEntries) {
-        GameViewModel.logbookOfSets { index, scoreEntry ->
-            item { ScoreItem(index, scoreEntry) }
+
+        if (GameViewModel.hasLogEntries) {
+            logbookOfSets { index, scoreEntry ->
+                item { ScoreItem(index, scoreEntry) }
+            }
         }
-//        }
     }
 }
