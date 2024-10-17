@@ -1,6 +1,6 @@
 ## Lizenz (DE)
 
-Gemeinfrei, soweit möglich. Lern- und Bastelprojekt ohne Gewährleistung, soweit ausschließbar.
+Gemeinfrei, soweit möglich. Lern- und Bastelprojekt ohne Gewährleistung, soweit diese ausschließbar ist.
 
 ## License (translated)
 
